@@ -1,19 +1,27 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, StyleSheet, Button } from 'react-native'
 import SentenceDisplay from '../components/SentenceDisplay'
 import SketchInput from '../components/SketchInput'
 import EndGameButton from '../components/EndGameButton'
 import NextPlayerButton from '../components/NextPlayerButton'
 
-const DrawScreen = () => {
+const SketchScreen = (props) => {
   return (
-    <View>
+    <View style={styles.container}>
       <SentenceDisplay />
       <SketchInput />
       <EndGameButton />
-      <NextPlayerButton />
+      <Button title='Submit' onPress={() => props.navigation.navigate('Sentence')} />
     </View>
   )
 }
 
-export default DrawScreen
+export default SketchScreen
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 15,
+    marginTop: 30
+  }
+})

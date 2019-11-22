@@ -1,14 +1,15 @@
 import React from 'react'
-import { Button, View } from 'react-native'
+import { Button, View, Text } from 'react-native'
 
-const NextPlayerButton = () => {
+const NextPlayerButton = (props) => {
   const nextPlayer = () => {
-    this.alert('you want to go to the next player')
+    this.props.navigation.navigate(props.screen)
   }
 
   return (
     <View>
-      <Button title='Done' onPress={nextPlayer} />
+      <Text>{props.screen}</Text>
+      <Button title='Submit' onPress={nextPlayer} />
     </View>
   )
 }

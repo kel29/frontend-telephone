@@ -4,13 +4,15 @@ import HomeScreen from '../screens/HomeScreen'
 import RulesScreen from '../screens/RulesScreen'
 import PastGamesScreen from '../screens/PastGamesScreen'
 import StartGameScreen from '../screens/StartGameScreen'
+import GameDisplayScreen from '../screens/GameDisplayScreen'
 
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
     Rules: RulesScreen,
     PastGames: PastGamesScreen,
-    StartGame: StartGameScreen
+    StartGame: StartGameScreen,
+    Display: GameDisplayScreen
   }
 )
 

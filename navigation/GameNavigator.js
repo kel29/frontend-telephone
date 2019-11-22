@@ -1,11 +1,16 @@
 import React from 'react'
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator, createSwitchNavigator } from 'react-navigation'
 import StartGameScreen from '../screens/StartGameScreen'
+import SketchScreen from '../screens/SketchScreen'
+import SentenceScreen from '../screens/SentenceScreen'
+import GameDisplayScreen from '../screens/GameDisplayScreen'
 
-const GameStack = createStackNavigator(
+const GameStack = createSwitchNavigator(
   {
-    StartGame: StartGameScreen
-    // TODO: make a switch navigator to go between game stages
+    StartGame: StartGameScreen,
+    Sketch: SketchScreen,
+    Sentence: SentenceScreen,
+    Display: GameDisplayScreen
   }
 )
 

@@ -1,10 +1,10 @@
 import React from 'react'
 import { createStackNavigator } from 'react-navigation'
-import SignInScreen from '../screens/SignInScreen'
+import LoginScreen from '../screens/LoginScreen'
 
 const AuthStack = createStackNavigator(
   {
-    SignIn: SignInScreen
+    Login: LoginScreen
   }
 )
 

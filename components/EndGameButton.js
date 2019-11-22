@@ -8,7 +8,7 @@ const EndGameButton = () => {
 
   return (
     <View>
-      <Button title='Done' onPress={endGame} />
+      <Button title='End Game' onPress={endGame} />
     </View>
   )
 }
