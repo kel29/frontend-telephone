@@ -15,7 +15,7 @@ export default class HomeScreen extends Component {
   }
 
   showPastGames = () => {
-    alert('You are trying to see your past games')
+    this.props.navigation.navigate('PastGames')
   }
 
   showRules = () => {

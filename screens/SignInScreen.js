@@ -3,7 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TextInput
+  TextInput,
+  Button
 } from 'react-native'
 
 class SignInScreen extends Component {
@@ -13,11 +14,16 @@ class SignInScreen extends Component {
     password: ''
   }
 
+  attemptSignIn = () => {
+    alert('You tried to sign in')
+  }
+
   render () {
     return (
       <View style={styles.container}>
         <Text>
           Welcome! Please Sign In:
+        </Text>
           <TextInput
             style={styles.formInput}
             placeholder='Username'
@@ -36,7 +42,7 @@ class SignInScreen extends Component {
             onChange={(password) => this.setState({password})}
             value={this.state.password}
           />
-        </Text>
+          <Button title='Sign In' onPress={this.attemptSignIn} />
       </View>
     )
   }
