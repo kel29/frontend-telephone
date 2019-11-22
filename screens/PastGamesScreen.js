@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { ScrollView, StyleSheet, Text } from 'react-native'
 
 const PastGamesScreen = () => {
   return (
