@@ -15,7 +15,7 @@ class SignInScreen extends Component {
   }
 
   attemptSignIn = () => {
-    alert('You tried to sign in')
+    this.props.navigation.navigate('Home')
   }
 
   render () {
