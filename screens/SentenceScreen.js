@@ -1,13 +1,15 @@
 import React from 'react'
 import { View } from 'react-native'
 import SentenceInput from '../components/SentenceInput'
+import SketchDisplay from '../components/SketchDisplay'
 
-const StartGameScreen = () => {
+const SentenceScreen = () => {
   return (
     <View>
       <SentenceInput />
+      <SketchDisplay />
     </View>
   )
 }
 
-export default StartGameScreen
+export default SentenceScreen
