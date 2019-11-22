@@ -7,17 +7,24 @@ import HomeScreen from '../screens/HomeScreen'
 import LinksScreen from '../screens/LinksScreen'
 import RulesScreen from '../screens/RulesScreen'
 import SettingsScreen from '../screens/SettingsScreen'
+import SignInScreen from '../screens/SignInScreen'
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {}
 })
 
+const AuthStack = createStackNavigator(
+  {
+    SignIn: SignInScreen
+  }
+)
+
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen
-  },
-  config
+    Home: HomeScreen,
+    Rules: RulesScreen
+  }
 )
 
 HomeStack.navigationOptions = {
@@ -52,20 +59,6 @@ LinksStack.navigationOptions = {
 
 LinksStack.path = ''
 
-const RulesStack = createStackNavigator(
-  {
-    Rules: RulesScreen
-  },
-  config
-)
-
-RulesStack.navigationOptions = {
-  tabBarLabel: 'Rules',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
-  )
-}
-
 const SettingsStack = createStackNavigator(
   {
     Settings: SettingsScreen
@@ -85,7 +78,6 @@ SettingsStack.path = ''
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
-  RulesStack,
   SettingsStack
 })
 

@@ -14,8 +14,8 @@ function RulesScreen () {
         to draw it. Player three writes a sentence to describe
         player two's drawing, and the game continues to alternate
         between describing and drawing until you choose to end it.
-        Then, you get to have a lovely laugh over evolution of what
-        just happened.
+        Then, you get to review everyone's contributions and have a
+        lovely laugh over evolution of what just happened.
       </Text>
       <Text style={styles.overview}>
         The first player will enter a sentence. It should be descriptive,
@@ -58,12 +58,17 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     fontWeight: 'bold',
     paddingTop: 15,
-    paddingBottom: 10
+    paddingBottom: 10,
+    fontSize: 17,
+    lineHeight: 24
   },
   overview: {
     flex: 1,
     textAlign: 'justify',
-    paddingTop: 10
+    paddingTop: 10,
+    fontSize: 17,
+    color: 'rgba(96,100,109, 1)',
+    lineHeight: 24
   }
 })
 
