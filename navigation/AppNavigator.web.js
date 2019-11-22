@@ -1,13 +1,16 @@
-import { createBrowserApp } from '@react-navigation/web';
-import { createSwitchNavigator } from 'react-navigation';
+import { createBrowserApp } from '@react-navigation/web'
+import { createSwitchNavigator } from 'react-navigation'
 
-import MainTabNavigator from './MainTabNavigator';
+import HomeNavigator from './HomeNavigator'
+import AuthNavigator from './AuthNavigator'
+import GameNavigator from './GameNavigator'
 
 const switchNavigator = createSwitchNavigator({
-  // You could add another route here for authentication.
-  // Read more at https://reactnavigation.org/docs/en/auth-flow.html
-  Main: MainTabNavigator,
-});
-switchNavigator.path = '';
+  Auth: AuthNavigator,
+  Home: HomeNavigator,
+  Game: GameNavigator
+})
 
-export default createBrowserApp(switchNavigator, { history: 'hash' });
+switchNavigator.path = ''
+
+export default createBrowserApp(switchNavigator, { history: 'hash' })
