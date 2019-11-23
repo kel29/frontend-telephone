@@ -4,11 +4,31 @@ import GameDisplay from '../components/GameDisplay'
 
 class PastGamesScreen extends PureComponent {
   state = {
-    games: ['initial data just to show something', 'here is another for example']
+    games: [
+      {
+        id: 0,
+        game_rounds: [
+        {sentence: ''}
+      ]}
+    ]
+  }
+
+  fetchGames = () => {
+    fetch('http://localhost:3000/games')
+    .then(resp => resp.json())
+    .then(games => this.setState({games}))
+  }
+
+  componentDidMount () {
+    this.fetchGames()
   }
 
   parseGames = () => {
-    return this.state.games.map(game => <GameDisplay title={game} />)
+    return this.state.games.map(game => <GameDisplay game={game} key={game.id} handleViewGame={this.handleViewGame} />)
+  }
+
+  handleViewGame = (game) => {
+    this.props.navigation.navigate('Display', game)
   }
 
   render () {

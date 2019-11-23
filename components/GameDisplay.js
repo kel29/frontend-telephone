@@ -1,10 +1,10 @@
 import React from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Button } from 'react-native'
 
 const GameList = (props) => {
   return (
     <View>
-      <Text>{props.title}</Text>
+      <Button title={props.game.game_rounds[0].sentence} onPress={() => props.handleViewGame(props.game)} />
     </View>
   )
 }

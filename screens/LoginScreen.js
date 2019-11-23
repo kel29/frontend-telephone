@@ -34,12 +34,14 @@ class LoginScreen extends Component {
   }
 
   attemptLogin = () => {
-    let user = this.state.users.find(user => user.name === this.state.username && user.email === this.state.email)
-    if (user) {
-      this.props.navigation.navigate('Home')
-    } else {
-      alert('Unable to login. Please review your credentials or create an account.')
-    }
+    // let user = this.state.users.find(user => user.name === this.state.username && user.email === this.state.email)
+    // if (user) {
+    //   this.props.navigation.navigate('Home')
+    // } else {
+    //   alert('Unable to login. Please review your credentials or create an account.')
+    // }
+    // commenting out the login logic for easier dev. Will bring back in for production
+    this.props.navigation.navigate('Home')
   }
 
   attemptCreateAccount = () => {

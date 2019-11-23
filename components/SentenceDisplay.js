@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-const SentenceDisplay = () => {
+const SentenceDisplay = (props) => {
   return (
     <View>
       <Text>
-        This will be a previously submitted sentence
+        {props.sentence}
       </Text>
     </View>
   )
