@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { ScrollView, StyleSheet, Text } from 'react-native'
+import { ScrollView } from 'react-native'
 import GameDisplay from '../components/GameDisplay'
 
 class PastGamesScreen extends PureComponent {
@@ -24,7 +24,11 @@ class PastGamesScreen extends PureComponent {
   }
 
   parseGames = () => {
-    return this.state.games.map(game => <GameDisplay game={game} key={game.id} handleViewGame={this.handleViewGame} />)
+    return this.state.games.map(game => {
+      if (game.user_id === this.props.navigation.getParam('userId')) {
+        return <GameDisplay game={game} key={game.id} handleViewGame={this.handleViewGame} />
+      }
+    })
   }
 
   handleViewGame = (game) => {

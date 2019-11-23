@@ -10,12 +10,14 @@ import {
 } from 'react-native'
 
 export default class HomeScreen extends Component {
+  userId = 1 // TODO: update this to get the userId from the signedin User
+
   startGame = () => {
-    this.props.navigation.navigate('StartGame')
+    this.props.navigation.navigate('StartGame', {userId: this.userId})
   }
 
   showPastGames = () => {
-    this.props.navigation.navigate('PastGames')
+    this.props.navigation.navigate('PastGames', {userId: this.userId})
   }
 
   showRules = () => {
@@ -44,13 +46,13 @@ export default class HomeScreen extends Component {
 }
 
 HomeScreen.navigationOptions = {
-  header: null
+  title: 'Welcome!'
 }
 
 function DevelopmentModeNotice () {
   if (__DEV__) {
     const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
+      <Text onPress={handleLearnMorePress}>
         Learn more
       </Text>
     )
