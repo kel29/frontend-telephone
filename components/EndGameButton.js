@@ -1,14 +1,10 @@
 import React from 'react'
 import { Button, View } from 'react-native'
 
-const EndGameButton = () => {
-  const endGame = () => {
-    this.alert('you want to end the game')
-  }
-
+const EndGameButton = (props) => {
   return (
     <View>
-      <Button title='End Game' onPress={endGame} />
+      <Button title='End Game' onPress={() => this.alert('you want to end the game')} />
     </View>
   )
 }

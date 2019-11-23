@@ -1,5 +1,5 @@
 import React from 'react'
-import { createStackNavigator, createSwitchNavigator } from 'react-navigation'
+import { createSwitchNavigator } from 'react-navigation'
 import StartGameScreen from '../screens/StartGameScreen'
 import SketchScreen from '../screens/SketchScreen'
 import SentenceScreen from '../screens/SentenceScreen'
