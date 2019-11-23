@@ -34,18 +34,16 @@ class LoginScreen extends Component {
   }
 
   attemptLogin = () => {
-    // let user = this.state.users.find(user => user.name === this.state.username && user.email === this.state.email)
-    // if (user) {
-    //   this.props.navigation.navigate('Home')
-    // } else {
-    //   alert('Unable to login. Please review your credentials or create an account.')
-    // }
-    // commenting out the login logic for easier dev. Will bring back in for production
-    this.props.navigation.navigate('Home')
+    let user = this.state.users.find(user => user.name === this.state.username.toLowerCase() && user.email === this.state.email.toLowerCase())
+    if (user) {
+      this.props.navigation.navigate('Home', {userId: user.id})
+    } else {
+      alert('Unable to login. Please review your credentials or create an account.')
+    }
   }
 
   attemptCreateAccount = () => {
-    let preexistingUser = this.state.users.find(user => user.name === this.state.username || user.email === this.state.email)
+    let preexistingUser = this.state.users.find(user => user.name === this.state.username.toLowerCase() || user.email === this.state.email.toLowerCase())
     if (preexistingUser && preexistingUser.email == this.state.email) {
       alert(`'${this.state.email}' is currently associated with another account. Please use another email. Or if you already have an account, please login.`)
     } else if (preexistingUser && preexistingUser.name == this.state.username) {
@@ -63,8 +61,8 @@ class LoginScreen extends Component {
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        name: this.state.username,
-        email: this.state.email,
+        name: this.state.username.toLowerCase(),
+        email: this.state.email.toLowerCase(),
         password: this.state.password
       })
     }
@@ -73,7 +71,7 @@ class LoginScreen extends Component {
     .then(resp => resp.json())
     .then(user => {
       if (user.id) {
-        this.props.navigation.navigate('Home')
+        this.props.navigation.navigate('Home', {userId: user.id})
       } else {
         alert('Unable to create account. Please note, all form fields are required and email addresses must be valid.')
       }
