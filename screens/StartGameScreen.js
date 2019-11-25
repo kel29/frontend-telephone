@@ -5,8 +5,7 @@ import NextPlayerButton from '../components/NextPlayerButton' // TODO: Link up n
 
 class StartGameScreen extends PureComponent {
   state = {
-    sentence: '',
-    gameId: 0
+    sentence: ''
   }
 
   config = {
@@ -14,7 +13,10 @@ class StartGameScreen extends PureComponent {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
-    }
+    },
+    body: JSON.stringify({
+      user_id: this.props.navigation.getParam('userId')
+    })
   }
 
   handleTyping = (sentence) => {
@@ -23,32 +25,18 @@ class StartGameScreen extends PureComponent {
 
   startNewGame = () => {
     this.createGame()
-    .then(this.props.navigation.navigate('Sketch', this.state))
   }
 
   createGame = () => {
-    return fetch('http://localhost:3000/games',
-      { ...this.config,
-        body: JSON.stringify({
-          user_id: this.props.navigation.getParam('userId')
-        })
-      }
-    ).then(resp => resp.json())
+    return fetch('http://localhost:3000/games', this.config)
+    .then(resp => resp.json())
     .then(newGame => {
-      this.setState({gameId: newGame.id})
-      this.createGameRound(newGame.id)
+      this.navigateToSketch({game_id: newGame.id})
     })
   }
 
-  createGameRound = (gameId) => {
-    fetch('http://localhost:3000/game_rounds',
-      { ...this.config,
-        body: JSON.stringify({
-          game_id: gameId,
-          sentence: this.state.sentence
-        })
-      }
-    )
+  navigateToSketch = (game) => {
+    this.props.navigation.navigate('Sketch', { game_rounds: [{...this.state, ...game}], id: game.game_id })
   }
 
   render () {

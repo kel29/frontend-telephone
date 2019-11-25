@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Text } from 'react-native'
+import { ScrollView, Text, Button } from 'react-native'
 import SentenceDisplay from '../components/SentenceDisplay'
 import SketchDisplay from '../components/SketchDisplay'
 
@@ -19,6 +19,7 @@ const GameDisplayScreen = (props) => {
     <ScrollView>
       <Text>Look! You're viewing a single game</Text>
       {displayRounds()}
+      <Button title='Home' onPress={() => props.navigation.navigate('Home')} />
     </ScrollView>
   )
 }

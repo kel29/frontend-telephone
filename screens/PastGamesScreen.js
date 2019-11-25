@@ -26,12 +26,12 @@ class PastGamesScreen extends PureComponent {
   parseGames = () => {
     return this.state.games.map(game => {
       if (game.user_id === this.props.navigation.getParam('userId')) {
-        return <GameDisplay game={game} key={game.id} handleViewGame={this.handleViewGame} />
+        return <GameDisplay game={game} key={game.id} handleViewGame={this.viewGame} />
       }
     })
   }
 
-  handleViewGame = (game) => {
+  viewGame = (game) => {
     this.props.navigation.navigate('Display', game)
   }
 
