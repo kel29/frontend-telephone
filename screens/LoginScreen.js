@@ -1,11 +1,19 @@
 import React, { PureComponent } from 'react'
 import {
   View,
-  Text,
   StyleSheet,
-  TextInput,
-  Button
+  TextInput
 } from 'react-native'
+import {
+  Button,
+  Text,
+  Container,
+  Form,
+  Item,
+  InputGroup,
+  Icon,
+  Input
+} from 'native-base'
 import GameContext from '../context/GameContext'
 
 class LoginScreen extends PureComponent {
@@ -85,31 +93,55 @@ class LoginScreen extends PureComponent {
 
   render () {
     return (
-      <View style={styles.container}>
-        <Text>
+      <Container style={styles.container}>
+        <Text style={styles.welcome}>
           Welcome! Please Login or Sign Up:
         </Text>
-          <TextInput
-            style={styles.formInput}
-            placeholder='Username'
-            onChangeText={text => this.handleTyping(text, 'username')}
-            value={this.state.username}
-          />
-          <TextInput
-            style={styles.formInput}
-            placeholder='Email'
-            onChangeText={text => this.handleTyping(text, 'email')}
-            value={this.state.email}
-          />
-          <TextInput
-            style={styles.formInput}
-            placeholder='Password'
-            onChangeText={text => this.handleTyping(text, 'password')}
-            value={this.state.password}
-          />
-        <Button title='Login' onPress={this.attemptLogin} />
-        <Button title='Create Account' onPress={this.attemptCreateAccount} />
-      </View>
+        <Form>
+          <Item>
+            <InputGroup>
+              <Icon name='ios-person'/>
+              <Input 
+                placeholder='Username' 
+                onChangeText={text => this.handleTyping(text, 'username')}
+                value={this.state.username}
+              />
+            </InputGroup>
+          </Item>
+          <Item>
+            <InputGroup>
+              <Icon name='ios-mail'/>
+              <Input 
+                placeholder='Email'
+                onChangeText={text => this.handleTyping(text, 'email')}
+                value={this.state.email}
+              />
+            </InputGroup>
+          </Item>
+          <Item>
+            <InputGroup>
+              <Icon name='ios-unlock'/>
+              <Input 
+                placeholder='Password'
+                onChangeText={text => this.handleTyping(text, 'password')}
+                value={this.state.password}
+              />
+            </InputGroup>
+          </Item>
+        </Form>
+        <View style={styles.formButtons}>
+          <Button primary onPress={this.attemptCreateAccount}>
+            <Text> 
+              Create Account 
+            </Text> 
+          </Button>
+          <Button primary onPress={this.attemptLogin}>
+            <Text>
+              Login
+            </Text> 
+          </Button>
+        </View>
+      </Container>
     )
   }
 }
@@ -123,14 +155,17 @@ export default LoginScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
-    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center'
   },
-  formInput: {
-    height: 40,
-    width: 150,
+  welcome: {
+    fontSize: 24,
     margin: 10
+  },
+  formButtons: {
+    justifyContent: 'space-between',
+    alignSelf: 'stretch',
+    margin: 10,
+    flexDirection: 'row'
   }
 })

@@ -1,4 +1,3 @@
-import { captureRef as takeSnapshotAsync } from 'react-native-view-shot'
 import React, { PureComponent } from 'react'
 import { Button, StyleSheet, View } from 'react-native'
 import { Sketch } from 'expo-pixi'

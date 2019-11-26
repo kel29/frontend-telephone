@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { View, StyleSheet, Button } from 'react-native'
 import SentenceDisplay from '../components/SentenceDisplay'
-import { captureRef as takeSnapshotAsync } from 'react-native-view-shot'
 import { Sketch } from 'expo-pixi'
 // TODO: Refractor to incorporate:
 // import EndGameButton from '../components/EndGameButton'
