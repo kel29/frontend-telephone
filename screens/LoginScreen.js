@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {
   View,
   Text,
@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import GameContext from '../context/GameContext'
 
-class LoginScreen extends Component {
+class LoginScreen extends PureComponent {
   static contextType = GameContext
 
   state = {

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { View, Button, StyleSheet } from 'react-native'
 import SentenceInput from '../components/SentenceInput'
-import SketchDisplay from '../components/SketchDisplay' // TODO: connect SketchDisplay
+import SketchDisplay from '../components/SketchDisplay'
 // TODO: Refractor to incorporate:
 // import EndGameButton from '../components/EndGameButton'
 // import NextPlayerButton from '../components/NextPlayerButton'

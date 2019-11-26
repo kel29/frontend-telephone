@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -8,38 +7,37 @@ import {
   Button
 } from 'react-native'
 
-export default class HomeScreen extends Component {
-
-  startGame = () => {
-    this.props.navigation.navigate('StartGame')
+const HomeScreen = (props) => {
+  const startGame = () => {
+    props.navigation.navigate('StartGame')
   }
 
-  showPastGames = () => {
-    this.props.navigation.navigate('PastGames')
+  const showPastGames = () => {
+    props.navigation.navigate('PastGames')
   }
 
-  showRules = () => {
-    this.props.navigation.navigate('Rules')
+  const showRules = () => {
+    props.navigation.navigate('Rules')
   }
-  
-  render () {
-    return (
-      <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        >
-          <View style={styles.getStartedContainer}>
-            <Text style={styles.getStartedText}>Welcome to Telephone!</Text>
-            <Button title='Start New Game' onPress={this.startGame} />
-            <Button title='Past Games' onPress={this.showPastGames} />
-            <Button title='Rules' onPress={this.showRules} />
-          </View>
-        </ScrollView>
-      </View>
-    )
-  }
+
+  return (
+    <View style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}
+      >
+        <View style={styles.getStartedContainer}>
+          <Text style={styles.getStartedText}>Welcome to Telephone!</Text>
+          <Button title='Start New Game' onPress={startGame} />
+          <Button title='Past Games' onPress={showPastGames} />
+          <Button title='Rules' onPress={showRules} />
+        </View>
+      </ScrollView>
+    </View>
+  )
 }
+
+export default HomeScreen
 
 HomeScreen.navigationOptions = {
   title: 'Welcome!'
@@ -62,8 +60,5 @@ const styles = StyleSheet.create({
     color: 'rgba(96,100,109, 1)',
     lineHeight: 24,
     textAlign: 'center'
-  },
-  navigationFilename: {
-    marginTop: 5
   }
 })
