@@ -6,8 +6,11 @@ import {
   TextInput,
   Button
 } from 'react-native'
+import GameContext from '../context/GameContext'
 
 class LoginScreen extends Component {
+  static contextType = GameContext
+
   state = {
     username: '',
     email: '',
@@ -36,7 +39,8 @@ class LoginScreen extends Component {
   attemptLogin = () => {
     let user = this.state.users.find(user => user.name === this.state.username.toLowerCase() && user.email === this.state.email.toLowerCase())
     if (user) {
-      this.props.navigation.navigate('Home', {userId: user.id})
+      this.context.setUser(user.id)
+      this.props.navigation.navigate('Home')
     } else {
       alert('Unable to login. Please review your credentials or create an account.')
     }
@@ -71,7 +75,8 @@ class LoginScreen extends Component {
     .then(resp => resp.json())
     .then(user => {
       if (user.id) {
-        this.props.navigation.navigate('Home', {userId: user.id})
+        this.context.setUser(user.id)
+        this.props.navigation.navigate('Home')
       } else {
         alert('Unable to create account. Please note, all form fields are required and email addresses must be valid.')
       }

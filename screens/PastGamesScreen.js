@@ -1,8 +1,11 @@
 import React, { PureComponent } from 'react'
 import { ScrollView } from 'react-native'
 import GameDisplay from '../components/GameDisplay'
+import GameContext from '../context/GameContext'
 
 class PastGamesScreen extends PureComponent {
+  static contextType = GameContext
+
   state = {
     games: [
       {
@@ -25,7 +28,7 @@ class PastGamesScreen extends PureComponent {
 
   parseGames = () => {
     return this.state.games.map(game => {
-      if (game.user_id === this.props.navigation.getParam('userId')) {
+      if (game.user_id === this.context.userId) {
         return <GameDisplay game={game} key={game.id} handleViewGame={this.viewGame} />
       }
     })

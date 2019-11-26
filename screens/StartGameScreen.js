@@ -2,8 +2,11 @@ import React, { PureComponent } from 'react'
 import { View, Button } from 'react-native'
 import SentenceInput from '../components/SentenceInput'
 import NextPlayerButton from '../components/NextPlayerButton' // TODO: Link up next player button
+import GameContext from '../context/GameContext'
 
 class StartGameScreen extends PureComponent {
+  static contextType = GameContext
+
   state = {
     sentence: ''
   }
@@ -15,7 +18,7 @@ class StartGameScreen extends PureComponent {
       'Accept': 'application/json'
     },
     body: JSON.stringify({
-      user_id: this.props.navigation.getParam('userId')
+      user_id: this.context.userId
     })
   }
 
