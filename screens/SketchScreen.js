@@ -9,7 +9,7 @@ import { Sketch } from 'expo-pixi'
 
 class SketchScreen extends PureComponent {
   state = {
-    image: null,
+    sketch: null,
     strokeColor: '#000',
     strokeWidth: 14
   }
@@ -19,38 +19,52 @@ class SketchScreen extends PureComponent {
 
   draw = async () => {
     const { uri } = await this.sketch.takeSnapshotAsync()
-    console.log({ uri })
 
     this.setState({
-      image: { uri },
+      sketch: { uri },
       strokeWidth: 14,
       strokeColor: '#000'
     })
   }
 
   navigateToSentence = () => {
-    // TODO: edit gameRounds to push in the newly created image before navigating
+    this.gameRounds.push({drawing: this.state.sketch.uri, game_id: this.id})
     this.props.navigation.navigate('Sentence', { id: this.id, game_rounds: this.gameRounds })
   }
 
   endGame = () => {
-    // TODO: edit gameRounds to push in the newly created image before navigating
-    // TODO: post the rounds to the database
-    this.props.navigation.navigate('Display', { id: this.id, game_rounds: this.gameRounds })
+    this.gameRounds.push({drawing: this.state.sketch.uri, game_id: this.id})
+    const config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        game_round: this.gameRounds
+      })
+    }
+
+    fetch('http://localhost:3000/game_rounds', config)
+    .then(this.props.navigation.navigate('Display', { id: this.id, game_rounds: this.gameRounds }))
   }
 
   render () {
     return (
       <View style={styles.container}>
-        <SentenceDisplay sentence={this.gameRounds[this.gameRounds.length - 1].sentence} />
-        <Sketch
-          ref={ref => (this.sketch = ref)}
-          style={styles.sketch}
-          strokeColor={this.state.strokeColor}
-          strokeWidth={this.state.strokeWidth}
-          strokeAlpha={1}
-          onChange={this.draw}
-        />
+        <View style={styles.sentenceDisplay}>
+          <SentenceDisplay sentence={this.gameRounds[this.gameRounds.length - 1].sentence} />
+        </View>
+        <View style={styles.container}>
+          <Sketch
+            ref={ref => (this.sketch = ref)}
+            style={styles.sketch}
+            strokeColor={this.state.strokeColor}
+            strokeWidth={this.state.strokeWidth}
+            strokeAlpha={1}
+            onChange={this.draw}
+          />
+        </View>
         <Button title='Undo' onPress={() => this.sketch.undo()} />
         <Button title='End Game' onPress={this.endGame} />
         <Button title='Submit' onPress={this.navigateToSentence} />
@@ -66,7 +80,13 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15,
     marginTop: 30
-  },sketch: {
+  },
+  sketch: {
     flex: 1
+  },
+  sentenceDisplay: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center'
   }
 })

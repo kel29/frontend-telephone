@@ -1,42 +1,39 @@
-import Expo from 'expo'
+import { captureRef as takeSnapshotAsync } from 'react-native-view-shot'
 import React, { PureComponent } from 'react'
 import { Button, StyleSheet, View } from 'react-native'
-import * as ExpoPixi from 'expo-pixi'
+import { Sketch } from 'expo-pixi'
 
 
 class SketchInput extends PureComponent {
   state = {
     image: null,
-    strokeColor: Math.random() * 0xffffff,
+    strokeColor: '#000',
     strokeWidth: 14
   }
 
-  onChangeAsync = async () => {
+  draw = async () => {
     const { uri } = await this.sketch.takeSnapshotAsync()
+    console.log({ uri })
 
     this.setState({
       image: { uri },
       strokeWidth: 14,
-      strokeColor: Math.random() * 0xffffff,
+      strokeColor: '#000',
     });
-  };
-
-  onReady = () => {
-    console.log('ready!');
   };
 
   render () {
     return (
       <View style={styles.container}>
-        <ExpoPixi.Sketch
+        <Sketch
           ref={ref => (this.sketch = ref)}
           style={styles.sketch}
           strokeColor={this.state.strokeColor}
           strokeWidth={this.state.strokeWidth}
           strokeAlpha={1}
-          onChange={this.onChangeAsync}
-          onReady={this.onReady}
+          onChange={this.draw}
         />
+        <Button title='Undo' onPress={() => this.sketch.undo()} />
       </View>
     )
   }

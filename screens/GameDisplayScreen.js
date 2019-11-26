@@ -10,7 +10,7 @@ const GameDisplayScreen = (props) => {
       if (round.sentence) {
         return <SentenceDisplay sentence={round.sentence} key={round.id} />
       } else {
-        return <SketchDisplay sketch={round.drawing} key={round.id} />
+        return <SketchDisplay drawing={round.drawing} key={round.id} />
       }
     })
   }

@@ -46,7 +46,7 @@ class SentenceScreen extends PureComponent {
     return (
       <View style={styles.container}>
         <SentenceInput handleTyping={this.handleTyping} />
-        <SketchDisplay />
+        <SketchDisplay drawing={this.gameRounds[this.gameRounds.length - 1].drawing}/>
         <Button title='End Game' onPress={this.endGame} />
         <Button title='Submit' onPress={this.navigateToSketch} />
       </View>
