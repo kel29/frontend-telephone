@@ -1,14 +1,27 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { StyleSheet } from 'react-native'
+import {
+  Container,
+  Text
+} from 'native-base'
 
 const SentenceDisplay = (props) => {
   return (
-    <View>
-      <Text>
+    <Container style={styles.container}>
+      <Text style={styles.text}>
         {props.sentence}
       </Text>
-    </View>
+    </Container>
   )
 }
 
 export default SentenceDisplay
+
+const styles = StyleSheet.create({
+  container: {
+    alignContent: 'center'
+  },
+  text: {
+    fontSize: 24
+  }
+})

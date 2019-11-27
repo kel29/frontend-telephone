@@ -1,5 +1,17 @@
 import React, { PureComponent } from 'react'
-import { View, StyleSheet, Button } from 'react-native'
+import { View, StyleSheet } from 'react-native'
+import {
+  Button,
+  Text,
+  Container,
+  Footer,
+  FooterTab,
+  Icon,
+  Card,
+  Body,
+  CardItem,
+  Header
+} from 'native-base'
 import SentenceDisplay from '../components/SentenceDisplay'
 import { Sketch } from 'expo-pixi'
 // TODO: Refractor to incorporate:
@@ -50,24 +62,36 @@ class SketchScreen extends PureComponent {
 
   render () {
     return (
-      <View style={styles.container}>
-        <View style={styles.sentenceDisplay}>
+      <Container style={styles.container}>
+        <Header />
+        <Container style={styles.sentenceDisplay}>
           <SentenceDisplay sentence={this.gameRounds[this.gameRounds.length - 1].sentence} />
-        </View>
-        <View style={styles.container}>
-          <Sketch
-            ref={ref => (this.sketch = ref)}
-            style={styles.sketch}
-            strokeColor={this.state.strokeColor}
-            strokeWidth={this.state.strokeWidth}
-            strokeAlpha={1}
-            onChange={this.draw}
-          />
-        </View>
-        <Button title='Undo' onPress={() => this.sketch.undo()} />
-        <Button title='End Game' onPress={this.endGame} />
-        <Button title='Submit' onPress={this.navigateToSentence} />
-      </View>
+        </Container>
+        <Sketch
+          ref={ref => (this.sketch = ref)}
+          style={styles.sketch}
+          strokeColor={this.state.strokeColor}
+          strokeWidth={this.state.strokeWidth}
+          strokeAlpha={1}
+          onChange={this.draw}
+        />
+        <Footer>
+          <FooterTab>
+            <Button onPress={this.endGame}>
+              <Icon name='ios-done-all' />
+              <Text>End Game</Text> 
+            </Button>
+            <Button onPress={this.navigateToSentence}>
+              <Icon name='ios-checkbox-outline' />
+              <Text>Submit Sketch</Text> 
+            </Button>
+            <Button onPress={() => this.sketch.undo()}>
+              <Icon name='ios-undo' />
+              <Text>Undo</Text> 
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
     )
   }
 }
@@ -77,15 +101,22 @@ export default SketchScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
-    marginTop: 30
+    justifyContent: 'center',
+    alignContent: 'center'
   },
   sketch: {
-    flex: 1
+    flex: 3,
+    backgroundColor: '#f4f4f4',
+    borderRadius: 8,
+    borderWidth: 0.5,
+    borderColor: 'steelblue',
+    padding: 10,
+    margin: 10
   },
   sentenceDisplay: {
+    padding: 10,
     flex: 1,
     alignContent: 'center',
-    justifyContent: 'center'
+    // justifyContent: 'center'
   }
 })
