@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react'
-import { StyleSheet } from 'react-native'
+import {
+  StyleSheet,
+  Dimensions
+} from 'react-native'
 import {
   Button,
   Text,
@@ -53,12 +56,12 @@ class SentenceScreen extends PureComponent {
 
   render () {
     return (
-      <Container style={styles.container}>
+      <Container>
         <Header />
-        <Container style={{flex: 1}}>
+        <Container style={styles.sentenceInput}>
           <SentenceInput handleTyping={this.handleTyping} />
         </Container>
-        <Container style={{flex: 3}}>
+        <Container style={styles.sketchDisplay}>
           <SketchDisplay drawing={this.gameRounds[this.gameRounds.length - 1].drawing}/>
         </Container>
         <Footer>
@@ -81,8 +84,18 @@ class SentenceScreen extends PureComponent {
 export default SentenceScreen
 
 const styles = StyleSheet.create({
-  container: {
-    alignContent: 'center',
+  sentenceInput: {
+    flex: 1,
     justifyContent: 'center'
+  },
+  sketchDisplay: {
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+    borderWidth: 0.5,
+    borderColor: 'steelblue',
+    margin: 10,
+    padding: 10
   }
 })

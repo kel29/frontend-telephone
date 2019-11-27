@@ -1,5 +1,10 @@
 import React, { PureComponent } from 'react'
-import { Button, StyleSheet, View } from 'react-native'
+import {
+  Button,
+  Dimensions,
+  StyleSheet,
+  View
+} from 'react-native'
 import { Sketch } from 'expo-pixi'
 
 

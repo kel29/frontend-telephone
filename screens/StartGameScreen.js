@@ -54,8 +54,10 @@ class StartGameScreen extends PureComponent {
 
   render () {
     return (
-      <Container style={styles.container}>
-        <SentenceInput handleTyping={this.handleTyping} />
+      <Container>
+        <Container style={styles.input}>
+          <SentenceInput handleTyping={this.handleTyping} />
+        </Container>
         <Footer>
           <FooterTab>
             <Button vertical onPress={() => this.props.navigation.goBack()}>
@@ -80,13 +82,7 @@ StartGameScreen.navigationOptions = {
 export default StartGameScreen
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignContent: 'center',
-    flex: 1,
-  },
   input: {
-    justifyContent: 'center',
-    alignContent: 'center'
+    justifyContent: 'center'
   }
 })
