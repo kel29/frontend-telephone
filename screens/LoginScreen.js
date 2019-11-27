@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react'
 import {
   View,
-  StyleSheet,
-  TextInput
+  StyleSheet
 } from 'react-native'
 import {
   Button,
@@ -12,7 +11,8 @@ import {
   Item,
   InputGroup,
   Icon,
-  Input
+  Input,
+  Label
 } from 'native-base'
 import GameContext from '../context/GameContext'
 

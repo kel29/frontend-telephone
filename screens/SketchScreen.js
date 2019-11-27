@@ -7,9 +7,6 @@ import {
   Footer,
   FooterTab,
   Icon,
-  Card,
-  Body,
-  CardItem,
   Header
 } from 'native-base'
 import SentenceDisplay from '../components/SentenceDisplay'
@@ -110,13 +107,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 0.5,
     borderColor: 'steelblue',
-    padding: 10,
     margin: 10
   },
   sentenceDisplay: {
     padding: 10,
     flex: 1,
     alignContent: 'center',
-    // justifyContent: 'center'
+    justifyContent: 'center'
   }
 })

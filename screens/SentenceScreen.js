@@ -1,5 +1,15 @@
 import React, { PureComponent } from 'react'
-import { View, Button, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
+import {
+  Button,
+  Text,
+  Container,
+  Footer,
+  FooterTab,
+  Icon,
+  Header,
+  Content
+} from 'native-base'
 import SentenceInput from '../components/SentenceInput'
 import SketchDisplay from '../components/SketchDisplay'
 // TODO: Refractor to incorporate:
@@ -44,12 +54,27 @@ class SentenceScreen extends PureComponent {
 
   render () {
     return (
-      <View style={styles.container}>
-        <SentenceInput handleTyping={this.handleTyping} />
-        <SketchDisplay drawing={this.gameRounds[this.gameRounds.length - 1].drawing}/>
-        <Button title='End Game' onPress={this.endGame} />
-        <Button title='Submit' onPress={this.navigateToSketch} />
-      </View>
+      <Container style={styles.container}>
+        <Header />
+        <Container style={{flex: 1}}>
+          <SentenceInput handleTyping={this.handleTyping} />
+        </Container>
+        <Container style={{flex: 3}}>
+          <SketchDisplay drawing={this.gameRounds[this.gameRounds.length - 1].drawing}/>
+        </Container>
+        <Footer>
+          <FooterTab>
+            <Button onPress={this.endGame}>
+              <Icon name='ios-done-all' />
+              <Text>End Game</Text>
+            </Button>
+            <Button onPress={this.navigateToSketch}>
+              <Icon name='ios-checkbox-outline' />
+              <Text>Submit Sentence</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
     )
   }
 }
@@ -58,8 +83,7 @@ export default SentenceScreen
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 15,
-    marginTop: 30
+    alignContent: 'center',
+    justifyContent: 'center'
   }
 })

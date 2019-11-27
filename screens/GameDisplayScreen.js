@@ -17,7 +17,6 @@ const GameDisplayScreen = (props) => {
 
   return (
     <ScrollView>
-      <Text>Look! You're viewing a single game</Text>
       {displayRounds()}
       <Button title='Home' onPress={() => props.navigation.navigate('Home')} />
     </ScrollView>

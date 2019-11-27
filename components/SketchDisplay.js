@@ -1,12 +1,36 @@
 import React from 'react'
-import { View, Image } from 'react-native'
+import {
+  StyleSheet,
+  Image,
+  Dimensions
+} from 'react-native'
+import {
+  Container
+} from 'native-base'
 
 const SketchDisplay = (props) => {
   return (
-    <View>
-      <Image style={{ width: 100, height: 100 }} source={{ uri: props.drawing }} />
-    </View>
+    <Container style={styles.container}>
+      <Image style={styles.sketch} source={{ uri: props.drawing }} />
+    </Container>
   )
 }
 
 export default SketchDisplay
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+    borderWidth: 0.5,
+    borderColor: 'steelblue',
+    margin: 10,
+    paddingVertical: 10
+  },
+  sketch: {
+    width: Math.round(Dimensions.get('window').width) - 60,
+    height: null,
+    flex: 1
+  }
+})
