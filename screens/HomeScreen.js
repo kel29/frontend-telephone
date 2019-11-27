@@ -1,11 +1,12 @@
 import React from 'react'
 import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  Button
+  StyleSheet
 } from 'react-native'
+import {
+  Button,
+  Text,
+  Container
+} from 'native-base'
 
 const HomeScreen = (props) => {
   const startGame = () => {
@@ -21,19 +22,24 @@ const HomeScreen = (props) => {
   }
 
   return (
-    <View style={styles.container}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
-        <View style={styles.getStartedContainer}>
-          <Text style={styles.getStartedText}>Welcome to Telephone!</Text>
-          <Button title='Start New Game' onPress={startGame} />
-          <Button title='Past Games' onPress={showPastGames} />
-          <Button title='Rules' onPress={showRules} />
-        </View>
-      </ScrollView>
-    </View>
+    <Container style={styles.container}>
+      <Text style={styles.welcomeText}>Welcome to Telephone!</Text>
+      <Button block success onPress={startGame}>
+        <Text>
+          Start New Game
+        </Text>
+      </Button>
+      <Button block primary onPress={showPastGames}>
+        <Text>
+          Past Games
+        </Text>
+      </Button>
+      <Button block info onPress={showRules}>
+        <Text>
+          Rules
+        </Text>
+      </Button>
+    </Container>
   )
 }
 
@@ -45,20 +51,17 @@ HomeScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff'
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    margin: 15
   },
   contentContainer: {
     paddingTop: 30
   },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center'
+  welcomeText: {
+    fontSize: 24,
+    lineHeight: 32,
+    textAlign: 'center',
+    margin: 10
   }
 })

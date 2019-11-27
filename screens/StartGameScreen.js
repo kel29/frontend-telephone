@@ -1,7 +1,17 @@
 import React, { PureComponent } from 'react'
-import { View, Button } from 'react-native'
+import { 
+  StyleSheet
+} from 'react-native'
+import {
+  Button,
+  Text,
+  Container,
+  Footer,
+  FooterTab,
+  Icon
+} from 'native-base'
 import SentenceInput from '../components/SentenceInput'
-import NextPlayerButton from '../components/NextPlayerButton' // TODO: Link up next player button
+// import NextPlayerButton from '../components/NextPlayerButton' // TODO: Link up next player button
 import GameContext from '../context/GameContext'
 
 class StartGameScreen extends PureComponent {
@@ -44,11 +54,21 @@ class StartGameScreen extends PureComponent {
 
   render () {
     return (
-      <View>
+      <Container style={styles.container}>
         <SentenceInput handleTyping={this.handleTyping} />
-        <Button title='Submit' onPress={this.startNewGame} />
-        <Button title='Cancel' onPress={() => this.props.navigation.goBack()} />
-      </View>
+        <Footer>
+          <FooterTab>
+            <Button vertical onPress={() => this.props.navigation.goBack()}>
+              <Icon name='ios-close-circle-outline'/>
+              <Text>Cancel</Text>
+            </Button>
+            <Button vertical onPress={this.startNewGame}>
+              <Icon name='ios-checkbox-outline'/>
+              <Text>Start Game</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
     )
   }
 }
@@ -58,3 +78,15 @@ StartGameScreen.navigationOptions = {
 }
 
 export default StartGameScreen
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignContent: 'center',
+    flex: 1,
+  },
+  input: {
+    justifyContent: 'center',
+    alignContent: 'center'
+  }
+})

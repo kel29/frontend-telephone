@@ -1,18 +1,35 @@
-import React, { PureComponent } from 'react'
-import { View, Text, TextInput } from 'react-native'
+import React from 'react'
+import {
+  StyleSheet
+} from 'react-native'
+import {
+  Container,
+  Form,
+  Item,
+  Input,
+  Label
+} from 'native-base'
 
 const SentenceInput = (props) => {
   return (
-    <View>
-      <Text>
-          Enter a sentence:
-      </Text>
-      <TextInput
-        placeholder='The cow jumped over the spoon'
-        onChangeText={sentence => props.handleTyping(sentence)}
-      />
-    </View>
+    <Container style={styles.container}>
+      <Form>
+        <Item floatingLabel>
+          <Label>Enter a descriptive sentence:</Label>
+          <Input
+            onChangeText={sentence => props.handleTyping(sentence)}
+          />
+        </Item>
+      </Form>
+    </Container>
   )
 }
 
 export default SentenceInput
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  }
+})
