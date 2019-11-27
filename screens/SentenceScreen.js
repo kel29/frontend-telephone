@@ -7,8 +7,7 @@ import {
   Footer,
   FooterTab,
   Icon,
-  Header,
-  Content
+  Header
 } from 'native-base'
 import SentenceInput from '../components/SentenceInput'
 import SketchDisplay from '../components/SketchDisplay'

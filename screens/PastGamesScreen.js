@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react'
-import { ScrollView } from 'react-native'
 import GameDisplay from '../components/GameDisplay'
 import GameContext from '../context/GameContext'
+import {
+  Container,
+  List,
+  Content
+} from 'native-base'
 
 class PastGamesScreen extends PureComponent {
   static contextType = GameContext
@@ -40,9 +44,13 @@ class PastGamesScreen extends PureComponent {
 
   render () {
     return (
-      <ScrollView>
-        {this.parseGames()}
-      </ScrollView>
+      <Container>
+        <Content>
+          <List>
+            {this.parseGames()}
+          </List>
+        </Content>
+      </Container>
     )
   }
 }

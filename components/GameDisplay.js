@@ -1,11 +1,22 @@
 import React from 'react'
-import { View, Button } from 'react-native'
+import { Button } from 'react-native'
+import {
+  ListItem,
+  Left,
+  Right,
+  Icon
+} from 'native-base'
 
 const GameList = (props) => {
   return (
-    <View>
-      <Button title={props.game.game_rounds[0].sentence} onPress={() => props.handleViewGame(props.game)} />
-    </View>
+    <ListItem>
+      <Left>
+        <Button title={props.game.game_rounds[0].sentence} onPress={() => props.handleViewGame(props.game)} />
+      </Left>
+      <Right>
+        <Icon name='ios-arrow-forward' />
+      </Right>
+    </ListItem>
   )
 }
 

@@ -107,7 +107,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 0.5,
     borderColor: 'steelblue',
-    margin: 10
+    margin: 10,
+    padding: 10
   },
   sentenceDisplay: {
     padding: 10,

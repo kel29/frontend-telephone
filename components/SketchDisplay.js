@@ -26,10 +26,10 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: 'steelblue',
     margin: 10,
-    paddingVertical: 10
+    padding: 10
   },
   sketch: {
-    width: Math.round(Dimensions.get('window').width) - 60,
+    width: Math.round(Dimensions.get('window').width) - 40,
     height: null,
     flex: 1
   }
