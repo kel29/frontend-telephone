@@ -55,6 +55,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Telephone/main.m; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Telephone-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telephone-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Telephone-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Telephone-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		304E6C0C23907CEF00798C98 /* libRNSketchCanvas.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNSketchCanvas.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E96E39E12E6D8BEDF4F18B /* Pods-Telephone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Telephone.release.xcconfig"; path = "Target Support Files/Pods-Telephone/Pods-Telephone.release.xcconfig"; sourceTree = "<group>"; };
 		491986EB33CD9A8210AB56DE /* Pods-Telephone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Telephone.debug.xcconfig"; path = "Target Support Files/Pods-Telephone/Pods-Telephone.debug.xcconfig"; sourceTree = "<group>"; };
 		55668C12EFD53D8DFBCD642D /* Pods-Telephone-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Telephone-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Telephone-tvOS/Pods-Telephone-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +140,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				304E6C0C23907CEF00798C98 /* libRNSketchCanvas.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				D6EAC817F6DA56BD34FE7800 /* libPods-Telephone.a */,
@@ -194,7 +196,6 @@
 				8CF9ABF4F04F4086937115F5 /* Pods-TelephoneTests.debug.xcconfig */,
 				89A72D6D93414160F2C0DE5E /* Pods-TelephoneTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -309,6 +310,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);

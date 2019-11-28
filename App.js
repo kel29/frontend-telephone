@@ -4,6 +4,9 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 import AppNavigator from './navigation/AppNavigator'
 import GameProvider from './context/GameProvider'
 
+import { SketchCanvas } from '@terrylinla/react-native-sketch-canvas';
+
+
 export default function App (props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false)
 
@@ -17,12 +20,24 @@ export default function App (props) {
   //   )
   // } else {
     return (
+      <View style={styles.container}>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <SketchCanvas
+            style={{ flex: 1 }}
+            strokeColor={'red'}
+            strokeWidth={7}
+          />
+        </View>
+          {/*
       <GameProvider>
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle='default' />}
           <AppNavigator />
         </View>
       </GameProvider>
+        */}
+
+      </View>
     )
   // }
 }

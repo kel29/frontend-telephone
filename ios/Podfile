@@ -34,6 +34,8 @@ target 'Telephone' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'RNSketchCanvas', :path => '../node_modules/@terrylinla/react-native-sketch-canvas'
+
   target 'TelephoneTests' do
     inherit! :search_paths
     # Pods for testing
