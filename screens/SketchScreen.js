@@ -62,14 +62,14 @@ class SketchScreen extends PureComponent {
 
   render () {
     return (
-      <Container style={styles.container}>
+      <Container>
         <Header />
         <Container style={styles.sentenceDisplay}>
           <SentenceDisplay sentence={this.gameRounds[this.gameRounds.length - 1].sentence} />
         </Container>
         <Sketch
           ref={ref => (this.sketch = ref)}
-          style={styles.sketch}
+          style={styles.sketchInput}
           strokeColor={this.state.strokeColor}
           strokeWidth={this.state.strokeWidth}
           strokeAlpha={1}
@@ -99,13 +99,9 @@ class SketchScreen extends PureComponent {
 export default SketchScreen
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center'
-  },
-  sketch: {
-    flex: 3,
+  sketchInput: {
+    width: Dimensions.get('window').width - 20,
+    height: Dimensions.get('window').width,
     backgroundColor: '#f4f4f4',
     borderRadius: 8,
     borderWidth: 0.5,

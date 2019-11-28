@@ -58,12 +58,10 @@ class SentenceScreen extends PureComponent {
     return (
       <Container>
         <Header />
-        <Container style={styles.sentenceInput}>
+        <Container>
           <SentenceInput handleTyping={this.handleTyping} />
         </Container>
-        <Container style={styles.sketchDisplay}>
-          <SketchDisplay drawing={this.gameRounds[this.gameRounds.length - 1].drawing}/>
-        </Container>
+        <SketchDisplay drawing={this.gameRounds[this.gameRounds.length - 1].drawing}/>
         <Footer>
           <FooterTab>
             <Button onPress={this.endGame}>
@@ -85,17 +83,6 @@ export default SentenceScreen
 
 const styles = StyleSheet.create({
   sentenceInput: {
-    flex: 1,
     justifyContent: 'center'
-  },
-  sketchDisplay: {
-    flex: 3,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    borderWidth: 0.5,
-    borderColor: 'steelblue',
-    margin: 10,
-    padding: 10
   }
 })
