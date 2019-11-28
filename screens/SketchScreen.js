@@ -13,7 +13,7 @@ import {
   Header
 } from 'native-base'
 import SentenceDisplay from '../components/SentenceDisplay'
-import { Sketch } from 'expo-pixi'
+// import { Sketch } from 'expo-pixi'
 // TODO: Refractor to incorporate:
 // import EndGameButton from '../components/EndGameButton'
 // import NextPlayerButton from '../components/NextPlayerButton'
@@ -67,6 +67,7 @@ class SketchScreen extends PureComponent {
         <Container style={styles.sentenceDisplay}>
           <SentenceDisplay sentence={this.gameRounds[this.gameRounds.length - 1].sentence} />
         </Container>
+          {/*
         <Sketch
           ref={ref => (this.sketch = ref)}
           style={styles.sketchInput}
@@ -75,19 +76,20 @@ class SketchScreen extends PureComponent {
           strokeAlpha={1}
           onChange={this.draw}
         />
+            */}
         <Footer>
           <FooterTab>
             <Button onPress={this.endGame}>
               <Icon name='ios-done-all' />
-              <Text>End Game</Text> 
+              <Text>End Game</Text>
             </Button>
             <Button onPress={this.navigateToSentence}>
               <Icon name='ios-checkbox-outline' />
-              <Text>Submit Sketch</Text> 
+              <Text>Submit Sketch</Text>
             </Button>
             <Button onPress={() => this.sketch.undo()}>
               <Icon name='ios-undo' />
-              <Text>Undo</Text> 
+              <Text>Undo</Text>
             </Button>
           </FooterTab>
         </Footer>

@@ -1,8 +1,5 @@
-import { AppLoading } from 'expo'
-import * as Font from 'expo-font'
 import React, { useState } from 'react'
 import { Platform, StatusBar, StyleSheet, View } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
 
 import AppNavigator from './navigation/AppNavigator'
 import GameProvider from './context/GameProvider'
@@ -10,15 +7,15 @@ import GameProvider from './context/GameProvider'
 export default function App (props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false)
 
-  if (!isLoadingComplete && !props.skipLoadingScreen) {
-    return (
-      <AppLoading
-        startAsync={loadResourcesAsync}
-        onError={handleLoadingError}
-        onFinish={() => handleFinishLoading(setLoadingComplete)}
-      />
-    )
-  } else {
+  // if (!isLoadingComplete && !props.skipLoadingScreen) {
+  //   return (
+  //     <AppLoading
+  //       startAsync={loadResourcesAsync}
+  //       onError={handleLoadingError}
+  //       onFinish={() => handleFinishLoading(setLoadingComplete)}
+  //     />
+  //   )
+  // } else {
     return (
       <GameProvider>
         <View style={styles.container}>
@@ -27,16 +24,7 @@ export default function App (props) {
         </View>
       </GameProvider>
     )
-  }
-}
-
-async function loadResourcesAsync () {
-  await Promise.all([
-    Font.loadAsync({
-      // This is the font that we are using for our tab bar
-      ...Ionicons.font
-    })
-  ])
+  // }
 }
 
 function handleLoadingError (error) {
