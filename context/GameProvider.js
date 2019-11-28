@@ -3,7 +3,7 @@ import GameContext from './GameContext'
 
 class GameProvider extends Component {
   state = {
-    userId: 0
+    userId: 1 // TODO: reset this to 0
   }
 
   render () {

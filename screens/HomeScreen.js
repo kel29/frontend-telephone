@@ -55,9 +55,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     margin: 15
   },
-  contentContainer: {
-    paddingTop: 30
-  },
   welcomeText: {
     fontSize: 24,
     lineHeight: 32,

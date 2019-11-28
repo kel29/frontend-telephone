@@ -11,9 +11,9 @@ import {
   Item,
   InputGroup,
   Icon,
-  Input,
-  Label
+  Input
 } from 'native-base'
+import { fetchURL } from '../constants/Variables'
 import GameContext from '../context/GameContext'
 
 class LoginScreen extends PureComponent {
@@ -27,7 +27,7 @@ class LoginScreen extends PureComponent {
   }
 
   fetchUsers = () => {
-    fetch('http://localhost:3000/users')
+    fetch(`${fetchURL}users`)
     .then(resp => resp.json())
     .then(users => this.setState({
       users: users
@@ -45,13 +45,14 @@ class LoginScreen extends PureComponent {
   }
 
   attemptLogin = () => {
-    let user = this.state.users.find(user => user.name === this.state.username.toLowerCase() && user.email === this.state.email.toLowerCase())
-    if (user) {
-      this.context.setUser(user.id)
-      this.props.navigation.navigate('Home')
-    } else {
-      alert('Unable to login. Please review your credentials or create an account.')
-    }
+    // let user = this.state.users.find(user => user.name === this.state.username.toLowerCase() && user.email === this.state.email.toLowerCase())
+    // if (user) {
+    //   this.context.setUser(user.id)
+    //   this.props.navigation.navigate('Home')
+    // } else {
+    //   alert('Unable to login. Please review your credentials or create an account.')
+    // }
+    this.props.navigation.navigate('Home')
   }
 
   attemptCreateAccount = () => {

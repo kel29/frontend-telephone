@@ -1,11 +1,12 @@
 import React from 'react'
-import { Button, View } from 'react-native'
+import { Button, Icon, Text } from 'native-base'
 
 const EndGameButton = (props) => {
   return (
-    <View>
-      <Button title='End Game' onPress={() => this.alert('you want to end the game')} />
-    </View>
+    <Button onPress={this.endGame}>
+      <Icon name='ios-done-all' />
+      <Text>End Game</Text>
+    </Button>
   )
 }
 
