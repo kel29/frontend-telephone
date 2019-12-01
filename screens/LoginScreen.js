@@ -15,6 +15,7 @@ import {
   Label
 } from 'native-base'
 import GameContext from '../context/GameContext'
+import { fetchAddress } from '../constants/Variables'
 
 class LoginScreen extends PureComponent {
   static contextType = GameContext
@@ -27,7 +28,7 @@ class LoginScreen extends PureComponent {
   }
 
   fetchUsers = () => {
-    fetch('http://localhost:3000/users')
+    fetch(`${fetchAddress}users`)
     .then(resp => resp.json())
     .then(users => this.setState({
       users: users
@@ -79,7 +80,7 @@ class LoginScreen extends PureComponent {
       })
     }
 
-    fetch('http://localhost:3000/users', config)
+    fetch(`${fetchAddress}users`, config)
     .then(resp => resp.json())
     .then(user => {
       if (user.id) {

@@ -14,6 +14,8 @@ import {
 } from 'native-base'
 import SentenceDisplay from '../components/SentenceDisplay'
 import { Sketch } from 'expo-pixi'
+import { fetchAddress } from '../constants/Variables'
+
 // TODO: Refractor to incorporate:
 // import EndGameButton from '../components/EndGameButton'
 // import NextPlayerButton from '../components/NextPlayerButton'
@@ -56,7 +58,7 @@ class SketchScreen extends PureComponent {
       })
     }
 
-    fetch('http://localhost:3000/game_rounds', config)
+    fetch(`${fetchAddress}games_rounds`, config)
     .then(this.props.navigation.navigate('Display', { id: this.id, game_rounds: this.gameRounds }))
   }
 

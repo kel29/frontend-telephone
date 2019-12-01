@@ -14,6 +14,8 @@ import {
 } from 'native-base'
 import SentenceInput from '../components/SentenceInput'
 import SketchDisplay from '../components/SketchDisplay'
+import { fetchAddress } from '../constants/Variables'
+
 // TODO: Refractor to incorporate:
 // import EndGameButton from '../components/EndGameButton'
 // import NextPlayerButton from '../components/NextPlayerButton'
@@ -45,7 +47,7 @@ class SentenceScreen extends PureComponent {
       })
     }
 
-    fetch('http://localhost:3000/game_rounds', config)
+    fetch(`${fetchAddress}game_rounds`, config)
     .then(this.props.navigation.navigate('Display', { id: this.id, game_rounds: this.gameRounds }))
   }
 

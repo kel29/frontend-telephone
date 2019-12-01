@@ -6,6 +6,8 @@ import {
   List,
   Content
 } from 'native-base'
+import { fetchAddress } from '../constants/Variables'
+
 
 class PastGamesScreen extends PureComponent {
   static contextType = GameContext
@@ -21,7 +23,7 @@ class PastGamesScreen extends PureComponent {
   }
 
   fetchGames = () => {
-    fetch('http://localhost:3000/games')
+    fetch(`${fetchAddress}games`)
     .then(resp => resp.json())
     .then(games => this.setState({games}))
   }

@@ -13,6 +13,7 @@ import {
 import SentenceInput from '../components/SentenceInput'
 // import NextPlayerButton from '../components/NextPlayerButton' // TODO: Link up next player button
 import GameContext from '../context/GameContext'
+import { fetchAddress } from '../constants/Variables'
 
 class StartGameScreen extends PureComponent {
   static contextType = GameContext
@@ -41,7 +42,7 @@ class StartGameScreen extends PureComponent {
   }
 
   createGame = () => {
-    return fetch('http://localhost:3000/games', this.config)
+    return fetch(`${fetchAddress}games`, this.config)
     .then(resp => resp.json())
     .then(newGame => {
       this.navigateToSketch({game_id: newGame.id})
