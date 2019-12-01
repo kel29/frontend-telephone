@@ -1,21 +1,19 @@
 import React, { PureComponent } from 'react'
-import { 
-  StyleSheet
-} from 'react-native'
+import { StyleSheet } from 'react-native'
 import {
   Button,
-  Text,
   Container,
   Footer,
   FooterTab,
-  Icon
+  Icon,
+  Text
 } from 'native-base'
 import SentenceInput from '../components/SentenceInput'
 // import NextPlayerButton from '../components/NextPlayerButton' // TODO: Link up next player button
 import GameContext from '../context/GameContext'
 import { fetchAddress } from '../constants/Variables'
 import { connect } from 'react-redux'
-import { setGameId, addRound } from '../actions/CurrentGameRoundsActions'
+import { setGameId, addRound, clearCurrentGame } from '../actions/CurrentGameRoundsActions'
 
 class StartGameScreen extends PureComponent {
   static contextType = GameContext
@@ -48,12 +46,12 @@ class StartGameScreen extends PureComponent {
     return fetch(`${fetchAddress}games`, this.config)
     .then(resp => resp.json())
     .then(newGame => {
-      setGameId(newGame.id)
-      addRound({
+      this.props.clearCurrentGame()
+      this.props.setGameId(newGame.id)
+      this.props.addRound({
         sentence: this.state.sentence,
         game_id: newGame.id
       })
-      console.log(this.props.gameRounds)
     })
   }
 
@@ -88,16 +86,11 @@ StartGameScreen.navigationOptions = {
   title: 'Begin a New Game'
 }
 
-mapState = state => {
-  return {
-    gameRounds: state.gameRounds
-  }
-}
-
 const mapDispatchToProps = dispatch => {
   return {
     setGameId: gameId => dispatch(setGameId(gameId)),
-    addRound: round => dispatch(addRound(round))
+    addRound: round => dispatch(addRound(round)),
+    clearCurrentGame: () => dispatch(clearCurrentGame())
   }
 }
 

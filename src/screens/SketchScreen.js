@@ -1,22 +1,19 @@
 import React, { PureComponent } from 'react'
-import {
-  Dimensions,
-  StyleSheet
-} from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 import {
   Button,
-  Text,
   Container,
   Footer,
   FooterTab,
+  Header,
   Icon,
-  Header
+  Text
 } from 'native-base'
 import SentenceDisplay from '../components/SentenceDisplay'
 import { Sketch } from 'expo-pixi'
 import { fetchAddress } from '../constants/Variables'
 import { connect } from 'react-redux'
-import { clearCurrentGame, addRound } from '../actions/CurrentGameRoundsActions'
+import { addRound } from '../actions/CurrentGameRoundsActions'
 
 // TODO: Refractor to incorporate:
 // import EndGameButton from '../components/EndGameButton'
@@ -40,19 +37,22 @@ class SketchScreen extends PureComponent {
   }
 
   navigateToSentence = () => {
-    addRound({
-      drawing: this.state.sketch.uri,
-      game_id: this.props.gameId
-    })
-
+    this.updateRounds()
     this.props.navigation.navigate('Sentence')
   }
 
-  endGame = () => {
-    addRound({
+  updateRounds = () => {
+    this.props.addRound({
       drawing: this.state.sketch.uri,
       game_id: this.props.gameId
     })
+  }
+
+  endGame = () => {
+    // TODO: figure out why the last round is not posting
+    // console.log('before updateRounds', this.props.gameRounds)
+    this.updateRounds()
+    // console.log('before post', this.props.gameRounds)
 
     const config = {
       method: 'POST',
@@ -66,13 +66,13 @@ class SketchScreen extends PureComponent {
     }
 
     fetch(`${fetchAddress}game_rounds`, config)
-    .then(
+    .then(() => {
+      // console.log('after post', this.props.gameRounds)
       this.props.navigation.navigate('Display', {
         id: this.props.id,
         game_rounds: this.props.gameRounds
       })
-    )
-    .then(clearCurrentGame)
+    })
   }
 
   render () {
@@ -120,8 +120,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addRound: round => dispatch(addRound(round)),
-    clearCurrentGame: () => dispatch(clearCurrentGame)
+    addRound: round => dispatch(addRound(round))
   }
 }
 

@@ -8,7 +8,7 @@ const reducer = (state = initialState, action) => {
     case 'ADD_ROUND':
       return {
         ...state,
-        gameRounds: state.gameRounds.push(action.round)
+        gameRounds: state.gameRounds.concat(action.round)
       }
     case 'SET_GAME_ID':
       return {

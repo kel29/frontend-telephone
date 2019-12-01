@@ -1,21 +1,18 @@
 import React, { PureComponent } from 'react'
 import {
-  StyleSheet,
-  Dimensions
-} from 'react-native'
-import {
   Button,
-  Text,
   Container,
   Footer,
   FooterTab,
+  Header,
   Icon,
-  Header
+  Text
 } from 'native-base'
 import SentenceInput from '../components/SentenceInput'
 import SketchDisplay from '../components/SketchDisplay'
 import { fetchAddress } from '../constants/Variables'
-import { clearCurrentGame, addRound } from '../actions/CurrentGameRoundsActions'
+import { addRound } from '../actions/CurrentGameRoundsActions'
+import { connect } from 'react-redux'
 
 // TODO: Refractor to incorporate:
 // import EndGameButton from '../components/EndGameButton'
@@ -30,12 +27,16 @@ class SentenceScreen extends PureComponent {
     this.setState({ sentence })
   }
 
-  endGame = () => {
-    // TODO: move this to end game component
-    addRound({
+  updateRounds = () => {
+    this.props.addRound({
       sentence: this.state.sentence,
       game_id: this.props.gameId
     })
+  }
+
+  endGame = () => {
+    // TODO: move this to end game component
+    this.updateRounds()
 
     const config = {
       method: 'POST',
@@ -49,20 +50,16 @@ class SentenceScreen extends PureComponent {
     }
 
     fetch(`${fetchAddress}game_rounds`, config)
-    .then(
+    .then(() => {
       this.props.navigation.navigate('Display', {
         id: this.props.id,
         game_rounds: this.props.gameRounds
       })
-    )
-    .then(clearCurrentGame)
+    })
   }
 
   navigateToSketch = () => {
-    addRound({
-      sentence: this.state.sentence,
-      game_id: this.props.gameId
-    })
+    this.updateRounds()
     this.props.navigation.navigate('Sketch')
   }
 
@@ -100,15 +97,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addRound: round => dispatch(addRound(round)),
-    clearCurrentGame: () => dispatch(clearCurrentGame)
+    addRound: round => dispatch(addRound(round))
   }
 }
 
-export default SentenceScreen
-
-const styles = StyleSheet.create({
-  sentenceInput: {
-    justifyContent: 'center'
-  }
-})
+export default connect(mapStateToProps, mapDispatchToProps)(SentenceScreen)
