@@ -1,11 +1,16 @@
 import { AppLoading } from 'expo'
 import * as Font from 'expo-font'
 import React, { useState } from 'react'
-import { Platform, StatusBar, StyleSheet, View } from 'react-native'
+import { Container } from 'native-base'
 import { Ionicons } from '@expo/vector-icons'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducer from './reducers/reducer'
 
 import AppNavigator from './navigation/AppNavigator'
 import GameProvider from './context/GameProvider'
+
+const store = createStore(reducer)
 
 export default function App (props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false)
@@ -20,12 +25,13 @@ export default function App (props) {
     )
   } else {
     return (
-      <GameProvider>
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle='default' />}
-          <AppNavigator />
-        </View>
-      </GameProvider>
+      <Provider store={store}>
+        <GameProvider>
+          <Container>
+            <AppNavigator />
+          </Container>
+        </GameProvider>
+      </Provider>
     )
   }
 }
@@ -46,10 +52,3 @@ function handleLoadingError (error) {
 function handleFinishLoading (setLoadingComplete) {
   setLoadingComplete(true)
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff'
-  }
-})
