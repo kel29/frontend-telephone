@@ -15,6 +15,7 @@ import {
 import SentenceInput from '../components/SentenceInput'
 import SketchDisplay from '../components/SketchDisplay'
 import { fetchAddress } from '../constants/Variables'
+import { clearCurrentGame, addRound } from '../actions/CurrentGameRoundsActions'
 
 // TODO: Refractor to incorporate:
 // import EndGameButton from '../components/EndGameButton'
@@ -25,16 +26,16 @@ class SentenceScreen extends PureComponent {
     sentence: ''
   }
 
-  gameRounds = this.props.navigation.getParam('game_rounds')
-  id = this.props.navigation.getParam('id')
-
   handleTyping = (sentence) => {
     this.setState({ sentence })
   }
 
   endGame = () => {
     // TODO: move this to end game component
-    this.gameRounds.push({sentence: this.state.sentence, game_id: this.id})
+    addRound({
+      sentence: this.state.sentence,
+      game_id: this.props.gameId
+    })
 
     const config = {
       method: 'POST',
@@ -43,17 +44,26 @@ class SentenceScreen extends PureComponent {
         Accept: 'application/json'
       },
       body: JSON.stringify({
-        game_round: this.gameRounds
+        game_round: this.props.gameRounds
       })
     }
 
     fetch(`${fetchAddress}game_rounds`, config)
-    .then(this.props.navigation.navigate('Display', { id: this.id, game_rounds: this.gameRounds }))
+    .then(
+      this.props.navigation.navigate('Display', {
+        id: this.props.id,
+        game_rounds: this.props.gameRounds
+      })
+    )
+    .then(clearCurrentGame)
   }
 
   navigateToSketch = () => {
-    this.gameRounds.push({sentence: this.state.sentence, game_id: this.id})
-    this.props.navigation.navigate('Sketch', { id: this.id, game_rounds: this.gameRounds })
+    addRound({
+      sentence: this.state.sentence,
+      game_id: this.props.gameId
+    })
+    this.props.navigation.navigate('Sketch')
   }
 
   render () {
@@ -63,7 +73,7 @@ class SentenceScreen extends PureComponent {
         <Container>
           <SentenceInput handleTyping={this.handleTyping} />
         </Container>
-        <SketchDisplay drawing={this.gameRounds[this.gameRounds.length - 1].drawing}/>
+        <SketchDisplay drawing={this.props.gameRounds[this.props.gameRounds.length - 1].drawing}/>
         <Footer>
           <FooterTab>
             <Button onPress={this.endGame}>
@@ -78,6 +88,20 @@ class SentenceScreen extends PureComponent {
         </Footer>
       </Container>
     )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    gameId: state.gameId,
+    gameRounds: state.gameRounds
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addRound: round => dispatch(addRound(round)),
+    clearCurrentGame: () => dispatch(clearCurrentGame)
   }
 }
 

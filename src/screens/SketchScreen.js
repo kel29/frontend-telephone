@@ -15,6 +15,8 @@ import {
 import SentenceDisplay from '../components/SentenceDisplay'
 import { Sketch } from 'expo-pixi'
 import { fetchAddress } from '../constants/Variables'
+import { connect } from 'react-redux'
+import { clearCurrentGame, addRound } from '../actions/CurrentGameRoundsActions'
 
 // TODO: Refractor to incorporate:
 // import EndGameButton from '../components/EndGameButton'
@@ -27,10 +29,7 @@ class SketchScreen extends PureComponent {
     strokeWidth: 14
   }
 
-  gameRounds = this.props.navigation.getParam('game_rounds')
-  id = this.props.navigation.getParam('id')
-
-  draw = async () => {
+  draw = async () => { // TODO switch to only take a snapshot at the end of the round
     const { uri } = await this.sketch.takeSnapshotAsync()
 
     this.setState({
@@ -41,12 +40,20 @@ class SketchScreen extends PureComponent {
   }
 
   navigateToSentence = () => {
-    this.gameRounds.push({drawing: this.state.sketch.uri, game_id: this.id})
-    this.props.navigation.navigate('Sentence', { id: this.id, game_rounds: this.gameRounds })
+    addRound({
+      drawing: this.state.sketch.uri,
+      game_id: this.props.gameId
+    })
+
+    this.props.navigation.navigate('Sentence')
   }
 
   endGame = () => {
-    this.gameRounds.push({drawing: this.state.sketch.uri, game_id: this.id})
+    addRound({
+      drawing: this.state.sketch.uri,
+      game_id: this.props.gameId
+    })
+
     const config = {
       method: 'POST',
       headers: {
@@ -54,12 +61,18 @@ class SketchScreen extends PureComponent {
         Accept: 'application/json'
       },
       body: JSON.stringify({
-        game_round: this.gameRounds
+        game_round: this.props.gameRounds
       })
     }
 
     fetch(`${fetchAddress}game_rounds`, config)
-    .then(this.props.navigation.navigate('Display', { id: this.id, game_rounds: this.gameRounds }))
+    .then(
+      this.props.navigation.navigate('Display', {
+        id: this.props.id,
+        game_rounds: this.props.gameRounds
+      })
+    )
+    .then(clearCurrentGame)
   }
 
   render () {
@@ -67,7 +80,7 @@ class SketchScreen extends PureComponent {
       <Container>
         <Header />
         <Container style={styles.sentenceDisplay}>
-          <SentenceDisplay sentence={this.gameRounds[this.gameRounds.length - 1].sentence} />
+          <SentenceDisplay sentence={this.props.gameRounds[this.props.gameRounds.length - 1].sentence} />
         </Container>
         <Sketch
           ref={ref => (this.sketch = ref)}
@@ -98,7 +111,21 @@ class SketchScreen extends PureComponent {
   }
 }
 
-export default SketchScreen
+const mapStateToProps = state => {
+  return {
+    gameId: state.gameId,
+    gameRounds: state.gameRounds
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addRound: round => dispatch(addRound(round)),
+    clearCurrentGame: () => dispatch(clearCurrentGame)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SketchScreen)
 
 const styles = StyleSheet.create({
   sketchInput: {
