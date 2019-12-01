@@ -1,1 +1,1 @@
-export const fetchURL = 'http://localhost:3000/'
+export const fetchAddress = 'http://localhost:3000/'

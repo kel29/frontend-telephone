@@ -13,7 +13,7 @@ import {
   Icon,
   Input
 } from 'native-base'
-import { fetchURL } from '../constants/Variables'
+import { fetchAddress } from '../constants/Variables'
 import GameContext from '../context/GameContext'
 
 class LoginScreen extends PureComponent {
@@ -27,7 +27,7 @@ class LoginScreen extends PureComponent {
   }
 
   fetchUsers = () => {
-    fetch(`${fetchURL}users`)
+    fetch(`${fetchAddress}users`)
     .then(resp => resp.json())
     .then(users => this.setState({
       users: users
