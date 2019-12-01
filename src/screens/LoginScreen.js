@@ -1,21 +1,17 @@
 import React, { PureComponent } from 'react'
-import {
-  View,
-  StyleSheet
-} from 'react-native'
+import { StyleSheet } from 'react-native'
 import {
   Button,
-  Text,
   Container,
   Form,
-  Item,
-  InputGroup,
   Icon,
+  InputGroup,
   Input,
-  Label
+  Item,
+  Text
 } from 'native-base'
 import GameContext from '../context/GameContext'
-import { fetchAddress } from '../constants/Variables'
+import { fetchAddress, postHeaders } from '../constants/Variables'
 
 class LoginScreen extends PureComponent {
   static contextType = GameContext
@@ -68,11 +64,7 @@ class LoginScreen extends PureComponent {
 
   createAccount = () => {
     const config = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
+      ...postHeaders,
       body: JSON.stringify({
         name: this.state.username.toLowerCase(),
         email: this.state.email.toLowerCase(),
@@ -130,7 +122,7 @@ class LoginScreen extends PureComponent {
             </InputGroup>
           </Item>
         </Form>
-        <View style={styles.formButtons}>
+        <Container style={styles.formButtons}>
           <Button primary onPress={this.attemptCreateAccount}>
             <Text> 
               Create Account 
@@ -141,7 +133,7 @@ class LoginScreen extends PureComponent {
               Login
             </Text> 
           </Button>
-        </View>
+        </Container>
       </Container>
     )
   }
@@ -155,7 +147,6 @@ export default LoginScreen
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
