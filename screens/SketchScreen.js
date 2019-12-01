@@ -58,7 +58,7 @@ class SketchScreen extends PureComponent {
       })
     }
 
-    fetch(`${fetchAddress}games_rounds`, config)
+    fetch(`${fetchAddress}game_rounds`, config)
     .then(this.props.navigation.navigate('Display', { id: this.id, game_rounds: this.gameRounds }))
   }
 
