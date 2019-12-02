@@ -16,10 +16,10 @@ const GameDisplayScreen = (props) => {
   const displayRounds = () => {
     const gameRounds = props.navigation.getParam('game_rounds')
     return gameRounds.map(round => {
-      if (round.sentence) {
-        return <SentenceDisplay sentence={round.sentence} key={round.id} />
-      } else {
+      if (round.drawing) {
         return <SketchDisplay drawing={round.drawing} key={round.id} />
+      } else {
+        return <SentenceDisplay sentence={round.sentence} key={round.id} />
       }
     })
   }

@@ -1,7 +1,7 @@
 const initialState = {
   userId: 0,
   gameId: 0,
-  gameRounds: []
+  gameRounds: [{ sentence: '', id: 0 }]
 }
 
 const reducer = (state = initialState, action) => {

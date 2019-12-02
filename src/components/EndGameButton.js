@@ -11,17 +11,14 @@ const EndGameButton = (props) => {
   }
 
   const endGame = () => {
-    updateCurrentGameRounds()
     postRound()
-  }
-
-  const updateCurrentGameRounds = () => {
-    props.addRound(props.roundInfo)
+      .then(props.navToDisplayGame)
   }
 
   const postRound = () => {
-    fetch(`${fetchAddress}game_rounds`, config)
-      .then(props.navToDisplayGame())
+    return fetch(`${fetchAddress}game_rounds`, config)
+      .then(resp => resp.json())
+      .then(round => props.addRound(round))
       .catch(err => console.log(err))
   }
 

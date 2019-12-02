@@ -34,24 +34,24 @@ class StartGameScreen extends PureComponent {
     })
     .then(resp => resp.json())
     .then(newGame => {
-      const roundInfo = {
-        sentence: this.state.sentence,
-        game_id: newGame.id
-      }
 
       this.props.clearCurrentGame()
       this.props.setGameId(newGame.id)
-      this.props.addRound(roundInfo)
-      this.postFirstRound(roundInfo)
+      this.postFirstRound(newGame.id)
     })
     .catch(console.log)
   }
 
-  postFirstRound = (roundInfo) => {
-    fetch(`${fetchAddress}game_rounds`, {
+  postFirstRound = (gameId) => {
+    return fetch(`${fetchAddress}game_rounds`, {
       ...postHeaders,
-      body: JSON.stringify(roundInfo)
+      body: JSON.stringify({
+        sentence: this.state.sentence,
+        game_id: gameId
+      })
     })
+    .then(resp => resp.json())
+    .then(round => this.props.addRound(round))
     .catch(console.log)
   }
 
