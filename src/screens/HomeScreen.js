@@ -1,12 +1,6 @@
 import React from 'react'
-import {
-  StyleSheet
-} from 'react-native'
-import {
-  Button,
-  Text,
-  Container
-} from 'native-base'
+import { StyleSheet } from 'react-native'
+import { Button, Container, Text } from 'native-base'
 
 const HomeScreen = (props) => {
   const startGame = () => {
