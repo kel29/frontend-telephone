@@ -10,12 +10,11 @@ import {
   Item,
   Text
 } from 'native-base'
-import GameContext from '../context/GameContext'
+import { setUserId } from '../actions/UserActions'
+import { connect } from 'react-redux'
 import { fetchAddress, postHeaders } from '../constants/Variables'
 
 class LoginScreen extends PureComponent {
-  static contextType = GameContext
-
   state = {
     username: '',
     email: '',
@@ -44,7 +43,7 @@ class LoginScreen extends PureComponent {
   attemptLogin = () => {
     let user = this.state.users.find(user => user.name === this.state.username.toLowerCase() && user.email === this.state.email.toLowerCase())
     if (user) {
-      this.context.setUser(user.id)
+      this.props.setUserId(user.id)
       this.props.navigation.navigate('Home')
     } else {
       alert('Unable to login. Please review your credentials or create an account.')
@@ -76,7 +75,7 @@ class LoginScreen extends PureComponent {
     .then(resp => resp.json())
     .then(user => {
       if (user.id) {
-        this.context.setUser(user.id)
+        this.props.setUserId(user.id)
         this.props.navigation.navigate('Home')
       } else {
         alert('Unable to create account. Please note, all form fields are required and email addresses must be valid.')
@@ -143,7 +142,13 @@ LoginScreen.navigationOptions = {
   title: 'Please Login'
 }
 
-export default LoginScreen
+const mapDispatchToProps = dispatch => {
+  return {
+    setUserId: userId => dispatch(setUserId(userId))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(LoginScreen)
 
 const styles = StyleSheet.create({
   container: {

@@ -9,15 +9,11 @@ import {
   Text
 } from 'native-base'
 import SentenceInput from '../components/SentenceInput'
-import NextPlayerButton from '../components/NextPlayerButton'
-import GameContext from '../context/GameContext'
 import { fetchAddress, postHeaders } from '../constants/Variables'
 import { connect } from 'react-redux'
-import { setGameId, addRound, clearCurrentGame } from '../actions/CurrentGameRoundsActions'
+import { setGameId, addRound, clearCurrentGame } from '../actions/CurrentGameActions'
 
 class StartGameScreen extends PureComponent {
-  static contextType = GameContext
-
   state = {
     sentence: ''
   }
@@ -34,7 +30,7 @@ class StartGameScreen extends PureComponent {
   createGame = () => {
     return fetch(`${fetchAddress}games`, {
       ...postHeaders,
-      body: JSON.stringify({ user_id: this.context.userId })
+      body: JSON.stringify({ user_id: this.props.userId })
     })
     .then(resp => resp.json())
     .then(newGame => {
@@ -90,6 +86,12 @@ StartGameScreen.navigationOptions = {
   title: 'Begin a New Game'
 }
 
+const mapStateToProps = state => {
+  return {
+    userId: state.userId
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     setGameId: gameId => dispatch(setGameId(gameId)),
@@ -98,7 +100,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(StartGameScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(StartGameScreen)
 
 const styles = StyleSheet.create({
   input: {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Icon, Text } from 'native-base'
 import { fetchAddress, postHeaders } from '../constants/Variables'
-import { addRound } from '../actions/CurrentGameRoundsActions'
+import { addRound } from '../actions/CurrentGameActions'
 import { connect } from 'react-redux'
 
 const NextPlayerButton = (props) => {

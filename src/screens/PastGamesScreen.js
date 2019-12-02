@@ -1,17 +1,11 @@
 import React, { PureComponent } from 'react'
 import GameDisplay from '../components/GameDisplay'
-import GameContext from '../context/GameContext'
-import {
-  Container,
-  List,
-  Content
-} from 'native-base'
+import { Container, Content, List } from 'native-base'
 import { fetchAddress } from '../constants/Variables'
+import { connect } from 'react-redux'
 
 
 class PastGamesScreen extends PureComponent {
-  static contextType = GameContext
-
   state = {
     games: [
       {
@@ -34,7 +28,7 @@ class PastGamesScreen extends PureComponent {
 
   parseGames = () => {
     return this.state.games.map(game => {
-      if (game.user_id === this.context.userId) {
+      if (game.user_id === this.props.userId) {
         return <GameDisplay game={game} key={game.id} handleViewGame={this.viewGame} />
       }
     })
@@ -61,4 +55,8 @@ PastGamesScreen.navigationOptions = {
   title: 'Past Games'
 }
 
-export default PastGamesScreen
+const mapStateToProps = state => {
+  return { userId: state.userId }
+}
+
+export default connect(mapStateToProps)(PastGamesScreen)

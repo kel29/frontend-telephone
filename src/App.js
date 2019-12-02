@@ -6,9 +6,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './reducers/reducer'
-
 import AppNavigator from './navigation/AppNavigator'
-import GameProvider from './context/GameProvider'
 
 const store = createStore(reducer)
 
@@ -26,11 +24,9 @@ export default function App (props) {
   } else {
     return (
       <Provider store={store}>
-        <GameProvider>
-          <Container>
-            <AppNavigator />
-          </Container>
-        </GameProvider>
+        <Container>
+          <AppNavigator />
+        </Container>
       </Provider>
     )
   }
@@ -39,7 +35,6 @@ export default function App (props) {
 async function loadResourcesAsync () {
   await Promise.all([
     Font.loadAsync({
-      // This is the font that we are using for our tab bar
       ...Ionicons.font
     })
   ])
