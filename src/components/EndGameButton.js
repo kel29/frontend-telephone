@@ -1,12 +1,42 @@
 import React from 'react'
-import { Button, View } from 'react-native'
+import { Button, Icon, Text } from 'native-base'
+import { fetchAddress, postHeaders } from '../constants/Variables'
+import { addRound } from '../actions/CurrentGameRoundsActions'
+import { connect } from 'react-redux'
 
 const EndGameButton = (props) => {
+  const config = {
+    ...postHeaders,
+    body: JSON.stringify(props.roundInfo)
+  }
+
+  const endGame = () => {
+    updateCurrentGameRounds()
+    postRound()
+  }
+
+  const updateCurrentGameRounds = () => {
+    props.addRound(props.roundInfo)
+  }
+
+  const postRound = () => {
+    fetch(`${fetchAddress}game_rounds`, config)
+      .then(props.navToDisplayGame())
+      .catch(err => console.log(err))
+  }
+
   return (
-    <View>
-      <Button title='End Game' onPress={() => this.alert('you want to end the game')} />
-    </View>
+    <Button onPress={endGame}>
+      <Icon name='ios-done-all' />
+      <Text>End Game</Text>
+    </Button>
   )
 }
 
-export default EndGameButton
+const mapDispatchToProps = dispatch => {
+  return {
+    addRound: round => dispatch(addRound(round))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(EndGameButton)

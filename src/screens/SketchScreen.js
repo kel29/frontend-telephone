@@ -11,22 +11,18 @@ import {
 } from 'native-base'
 import SentenceDisplay from '../components/SentenceDisplay'
 import { Sketch } from 'expo-pixi'
-import { fetchAddress } from '../constants/Variables'
+import EndGameButton from '../components/EndGameButton'
+import NextPlayerButton from '../components/NextPlayerButton'
 import { connect } from 'react-redux'
-import { addRound } from '../actions/CurrentGameRoundsActions'
-
-// TODO: Refractor to incorporate:
-// import EndGameButton from '../components/EndGameButton'
-// import NextPlayerButton from '../components/NextPlayerButton'
 
 class SketchScreen extends PureComponent {
   state = {
-    sketch: null,
+    sketch: { uri: null },
     strokeColor: '#000',
     strokeWidth: 14
   }
 
-  draw = async () => { // TODO switch to only take a snapshot at the end of the round
+  snapshotSketch = async () => {
     const { uri } = await this.sketch.takeSnapshotAsync()
 
     this.setState({
@@ -37,41 +33,13 @@ class SketchScreen extends PureComponent {
   }
 
   navigateToSentence = () => {
-    this.updateRounds()
     this.props.navigation.navigate('Sentence')
   }
 
-  updateRounds = () => {
-    this.props.addRound({
-      drawing: this.state.sketch.uri,
-      game_id: this.props.gameId
-    })
-  }
-
-  endGame = () => {
-    // TODO: figure out why the last round is not posting
-    // console.log('before updateRounds', this.props.gameRounds)
-    this.updateRounds()
-    // console.log('before post', this.props.gameRounds)
-
-    const config = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      body: JSON.stringify({
-        game_round: this.props.gameRounds
-      })
-    }
-
-    fetch(`${fetchAddress}game_rounds`, config)
-    .then(() => {
-      // console.log('after post', this.props.gameRounds)
-      this.props.navigation.navigate('Display', {
-        id: this.props.id,
-        game_rounds: this.props.gameRounds
-      })
+  navToDisplayGame = () => {
+    this.props.navigation.navigate('Display', {
+      id: this.props.gameId,
+      game_rounds: this.props.gameRounds
     })
   }
 
@@ -88,18 +56,18 @@ class SketchScreen extends PureComponent {
           strokeColor={this.state.strokeColor}
           strokeWidth={this.state.strokeWidth}
           strokeAlpha={1}
-          onChange={this.draw}
+          onChange={this.snapshotSketch}
         />
         <Footer>
           <FooterTab>
-            <Button onPress={this.endGame}>
-              <Icon name='ios-done-all' />
-              <Text>End Game</Text> 
-            </Button>
-            <Button onPress={this.navigateToSentence}>
-              <Icon name='ios-checkbox-outline' />
-              <Text>Submit Sketch</Text> 
-            </Button>
+            <EndGameButton
+              roundInfo={{drawing: this.state.sketch.uri, game_id: this.props.gameId}}
+              navToDisplayGame={this.navToDisplayGame}
+            />
+            <NextPlayerButton
+              roundInfo={{drawing: this.state.sketch.uri, game_id: this.props.gameId}}
+              navigateToNext={this.navigateToSentence}
+            />
             <Button onPress={() => this.sketch.undo()}>
               <Icon name='ios-undo' />
               <Text>Undo</Text> 
@@ -118,13 +86,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addRound: round => dispatch(addRound(round))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SketchScreen)
+export default connect(mapStateToProps)(SketchScreen)
 
 const styles = StyleSheet.create({
   sketchInput: {

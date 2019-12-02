@@ -9,9 +9,9 @@ import {
   Text
 } from 'native-base'
 import SentenceInput from '../components/SentenceInput'
-// import NextPlayerButton from '../components/NextPlayerButton' // TODO: Link up next player button
+import NextPlayerButton from '../components/NextPlayerButton'
 import GameContext from '../context/GameContext'
-import { fetchAddress } from '../constants/Variables'
+import { fetchAddress, postHeaders } from '../constants/Variables'
 import { connect } from 'react-redux'
 import { setGameId, addRound, clearCurrentGame } from '../actions/CurrentGameRoundsActions'
 
@@ -20,17 +20,6 @@ class StartGameScreen extends PureComponent {
 
   state = {
     sentence: ''
-  }
-
-  config = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
-    body: JSON.stringify({
-      user_id: this.context.userId
-    })
   }
 
   handleTyping = (sentence) => {
@@ -43,16 +32,31 @@ class StartGameScreen extends PureComponent {
   }
 
   createGame = () => {
-    return fetch(`${fetchAddress}games`, this.config)
+    return fetch(`${fetchAddress}games`, {
+      ...postHeaders,
+      body: JSON.stringify({ user_id: this.context.userId })
+    })
     .then(resp => resp.json())
     .then(newGame => {
-      this.props.clearCurrentGame()
-      this.props.setGameId(newGame.id)
-      this.props.addRound({
+      const roundInfo = {
         sentence: this.state.sentence,
         game_id: newGame.id
-      })
+      }
+
+      this.props.clearCurrentGame()
+      this.props.setGameId(newGame.id)
+      this.props.addRound(roundInfo)
+      this.postFirstRound(roundInfo)
     })
+    .catch(console.log)
+  }
+
+  postFirstRound = (roundInfo) => {
+    fetch(`${fetchAddress}game_rounds`, {
+      ...postHeaders,
+      body: JSON.stringify(roundInfo)
+    })
+    .catch(console.log)
   }
 
   navigateToSketch = () => {

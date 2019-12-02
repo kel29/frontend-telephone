@@ -1,17 +1,42 @@
 import React from 'react'
-import { Button, View, Text } from 'react-native'
+import { Button, Icon, Text } from 'native-base'
+import { fetchAddress, postHeaders } from '../constants/Variables'
+import { addRound } from '../actions/CurrentGameRoundsActions'
+import { connect } from 'react-redux'
 
 const NextPlayerButton = (props) => {
+  const config = {
+    ...postHeaders,
+    body: JSON.stringify(props.roundInfo)
+  }
+
   const nextPlayer = () => {
-    this.props.navigation.navigate(props.screen)
+    updateCurrentGameRounds()
+    postRound()
+  }
+
+  const postRound = () => {
+    fetch(`${fetchAddress}game_rounds`, config)
+      .then(props.navigateToNext())
+      .catch(err => console.log(err))
+  }
+
+  const updateCurrentGameRounds = () => {
+    props.addRound(props.roundInfo)
   }
 
   return (
-    <View>
-      <Text>{props.screen}</Text>
-      <Button title='Submit' onPress={nextPlayer} />
-    </View>
+    <Button onPress={nextPlayer}>
+      <Icon name='ios-checkbox-outline' />
+      <Text>Submit</Text>
+    </Button>
   )
 }
 
-export default NextPlayerButton
+const mapDispatchToProps = dispatch => {
+  return {
+    addRound: round => dispatch(addRound(round))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(NextPlayerButton)
