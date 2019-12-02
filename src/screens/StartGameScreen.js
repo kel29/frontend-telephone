@@ -9,7 +9,7 @@ import {
   Text
 } from 'native-base'
 import SentenceInput from '../components/SentenceInput'
-import { fetchAddress, postHeaders } from '../constants/Variables'
+import { API_ROOT, POST_HEADERS } from '../services/api'
 import { connect } from 'react-redux'
 import { setGameId, addRound, clearCurrentGame } from '../actions/CurrentGameActions'
 
@@ -28,8 +28,8 @@ class StartGameScreen extends PureComponent {
   }
 
   createGame = () => {
-    return fetch(`${fetchAddress}games`, {
-      ...postHeaders,
+    return fetch(`${API_ROOT}games`, {
+      ...POST_HEADERS,
       body: JSON.stringify({ user_id: this.props.userId })
     })
     .then(resp => resp.json())
@@ -43,8 +43,8 @@ class StartGameScreen extends PureComponent {
   }
 
   postFirstRound = (gameId) => {
-    return fetch(`${fetchAddress}game_rounds`, {
-      ...postHeaders,
+    return fetch(`${API_ROOT}game_rounds`, {
+      ...POST_HEADERS,
       body: JSON.stringify({
         sentence: this.state.sentence,
         game_id: gameId

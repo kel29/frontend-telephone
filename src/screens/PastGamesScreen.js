@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import GameDisplay from '../components/GameDisplay'
 import { Container, Content, List } from 'native-base'
-import { fetchAddress } from '../constants/Variables'
+import { API_ROOT } from '../services/api'
 import { connect } from 'react-redux'
 
 
@@ -17,7 +17,7 @@ class PastGamesScreen extends PureComponent {
   }
 
   fetchGames = () => {
-    fetch(`${fetchAddress}games`)
+    fetch(`${API_ROOT}games`)
     .then(resp => resp.json())
     .then(games => this.setState({games}))
   }

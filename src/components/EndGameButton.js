@@ -1,12 +1,12 @@
 import React from 'react'
 import { Button, Icon, Text } from 'native-base'
-import { fetchAddress, postHeaders } from '../constants/Variables'
+import { API_ROOT, POST_HEADERS } from '../services/api'
 import { addRound } from '../actions/CurrentGameActions'
 import { connect } from 'react-redux'
 
 const EndGameButton = (props) => {
   const config = {
-    ...postHeaders,
+    ...POST_HEADERS,
     body: JSON.stringify(props.roundInfo)
   }
 
@@ -16,7 +16,7 @@ const EndGameButton = (props) => {
   }
 
   const postRound = () => {
-    return fetch(`${fetchAddress}game_rounds`, config)
+    return fetch(`${API_ROOT}game_rounds`, config)
       .then(resp => resp.json())
       .then(round => props.addRound(round))
       .catch(err => console.log(err))

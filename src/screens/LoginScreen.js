@@ -12,7 +12,7 @@ import {
 } from 'native-base'
 import { setUserId } from '../actions/UserActions'
 import { connect } from 'react-redux'
-import { fetchAddress, postHeaders } from '../constants/Variables'
+import { API_ROOT, POST_HEADERS } from '../services/api'
 
 class LoginScreen extends PureComponent {
   state = {
@@ -23,7 +23,7 @@ class LoginScreen extends PureComponent {
   }
 
   fetchUsers = () => {
-    fetch(`${fetchAddress}users`)
+    fetch(`${API_ROOT}users`)
     .then(resp => resp.json())
     .then(users => this.setState({
       users: users
@@ -63,7 +63,7 @@ class LoginScreen extends PureComponent {
 
   createAccount = () => {
     const config = {
-      ...postHeaders,
+      ...POST_HEADERS,
       body: JSON.stringify({
         name: this.state.username.toLowerCase(),
         email: this.state.email.toLowerCase(),
@@ -71,7 +71,7 @@ class LoginScreen extends PureComponent {
       })
     }
 
-    fetch(`${fetchAddress}users`, config)
+    fetch(`${API_ROOT}users`, config)
     .then(resp => resp.json())
     .then(user => {
       if (user.id) {
