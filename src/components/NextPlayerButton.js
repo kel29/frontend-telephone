@@ -12,7 +12,7 @@ const NextPlayerButton = (props) => {
 
   const nextPlayer = () => {
     postRound()
-      .then(props.navigateToNext)
+      .then(props.navToInBetween)
   }
 
   const postRound = () => {

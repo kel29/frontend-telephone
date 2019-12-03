@@ -32,8 +32,8 @@ class SketchScreen extends PureComponent {
     })
   }
 
-  navigateToSentence = () => {
-    this.props.navigation.navigate('Sentence')
+  navToInBetween = () => {
+    this.props.navigation.navigate('InBetween', {screen: 'Sentence'})
   }
 
   navToDisplayGame = () => {
@@ -66,7 +66,7 @@ class SketchScreen extends PureComponent {
             />
             <NextPlayerButton
               roundInfo={{drawing: this.state.sketch.uri, game_id: this.props.gameId}}
-              navigateToNext={this.navigateToSentence}
+              navToInBetween={this.navToInBetween}
             />
             <Button onPress={() => this.sketch.undo()}>
               <Icon name='ios-undo' />

@@ -24,7 +24,7 @@ class StartGameScreen extends PureComponent {
 
   startNewGame = () => {
     this.createGame()
-    .then(this.navigateToSketch)
+    .then(this.navToInBetween)
   }
 
   createGame = () => {
@@ -55,8 +55,8 @@ class StartGameScreen extends PureComponent {
     .catch(console.log)
   }
 
-  navigateToSketch = () => {
-    this.props.navigation.navigate('Sketch')
+  navToInBetween = () => {
+    this.props.navigation.navigate('InBetween', {screen: 'Sketch'})
   }
 
   render () {

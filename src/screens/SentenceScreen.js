@@ -20,8 +20,8 @@ class SentenceScreen extends PureComponent {
     this.setState({ sentence })
   }
 
-  navigateToSketch = () => {
-    this.props.navigation.navigate('Sketch')
+  navToInBetween = () => {
+    this.props.navigation.navigate('InBetween', {screen: 'Sketch'})
   }
 
   navToDisplayGame = () => {
@@ -49,7 +49,7 @@ class SentenceScreen extends PureComponent {
             />
             <NextPlayerButton
               roundInfo={{sentence: this.state.sentence, game_id: this.props.gameId}}
-              navigateToNext={this.navigateToSketch}
+              navToInBetween={this.navToInBetween}
             />
           </FooterTab>
         </Footer>
