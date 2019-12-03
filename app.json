@@ -25,6 +25,9 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "facebookScheme": "fb983634002001933",
+    "facebookAppId": "983634002001933",
+    "facebookDisplayName": "Telephone"
   }
 }

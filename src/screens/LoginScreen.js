@@ -13,6 +13,8 @@ import {
 import { setUserId } from '../actions/UserActions'
 import { connect } from 'react-redux'
 import { API_ROOT, POST_HEADERS } from '../services/api'
+import * as Facebook from 'expo-facebook';
+
 
 class LoginScreen extends PureComponent {
   state = {
@@ -83,6 +85,29 @@ class LoginScreen extends PureComponent {
     })
   }
 
+  // TODO work on this
+  facebookLogin = async () => {
+    try {
+      const {
+        type,
+        token,
+        expires,
+        permissions,
+        declinedPermissions
+      } = await Facebook.logInWithReadPermissionsAsync('983634002001933', {
+        permissions: ['public_profile', 'email']
+      })
+      if (type === 'success') {
+        const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`)
+        alert(`Hi ${(await response.json()).name}!`)
+      } else {
+        alert('Login cancelled')
+      }
+    } catch ({ message }) {
+      alert(`Facebook Login Error: ${message}`)
+    }
+  }
+
   render () {
     return (
       <Container style={styles.container}>
@@ -127,9 +152,9 @@ class LoginScreen extends PureComponent {
               Create Account 
             </Text> 
           </Button>
-          <Button primary onPress={this.attemptLogin}>
+          <Button primary onPress={this.facebookLogin}>
             <Text>
-              Login
+              Login with Facebook
             </Text> 
           </Button>
         </Container>
