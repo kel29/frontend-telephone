@@ -10,5 +10,8 @@ export default createAppContainer(
     Auth: AuthNavigator,
     Home: HomeNavigator,
     Game: GameNavigator
+  },
+  {
+    initialRouteName: 'Auth'
   })
 )
