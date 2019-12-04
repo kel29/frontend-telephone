@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react'
 import {
   Container,
   Footer,
-  FooterTab,
-  Header
+  FooterTab
 } from 'native-base'
 import SentenceInput from '../components/SentenceInput'
 import SketchDisplay from '../components/SketchDisplay'
@@ -34,7 +33,6 @@ class SentenceScreen extends PureComponent {
   render () {
     return (
       <Container>
-        <Header />
         <Container>
           <SentenceInput handleTyping={this.handleTyping} />
         </Container>

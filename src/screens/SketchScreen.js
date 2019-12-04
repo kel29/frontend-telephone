@@ -5,7 +5,6 @@ import {
   Container,
   Footer,
   FooterTab,
-  Header,
   Icon,
   Text
 } from 'native-base'
@@ -46,7 +45,6 @@ class SketchScreen extends PureComponent {
   render () {
     return (
       <Container>
-        <Header />
         <Container style={styles.sentenceDisplay}>
           <SentenceDisplay sentence={this.props.gameRounds[this.props.gameRounds.length - 1].sentence} />
         </Container>

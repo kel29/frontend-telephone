@@ -53,8 +53,9 @@ const styles = StyleSheet.create({
     alignContent: 'center'
   },
   passingText: {
-    fontSize: 30,
+    fontSize: 40,
     textAlign: 'center',
+    fontFamily: 'patrick-hand-sc',
     marginHorizontal: 10,
     marginVertical: 20
   },
