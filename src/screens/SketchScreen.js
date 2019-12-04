@@ -27,7 +27,7 @@ class SketchScreen extends PureComponent {
 
     this.setState({
       sketch: { uri },
-      strokeWidth: 14,
+      strokeWidth: 10,
       strokeColor: '#000'
     })
   }

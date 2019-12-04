@@ -20,6 +20,10 @@ class LoginScreen extends PureComponent {
     }))
   }
 
+  async componentDidMount () {
+    await this.fetchUsers()
+  }
+
   facebookAttemptLogin = (facebookData) => {
     let user = this.state.users.find(user => user.facebook_id === facebookData.id)
     if (user) {
