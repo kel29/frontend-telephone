@@ -1,11 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import {
-  Button,
-  Container,
-  Header,
-  Text
-} from 'native-base'
+import { Button, Container, Text } from 'native-base'
 import { connect } from 'react-redux'
 
 const InBetweenScreen = (props) => {

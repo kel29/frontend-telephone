@@ -1,23 +1,16 @@
 import React, { PureComponent } from 'react'
-import { StyleSheet } from 'react-native'
-import {
-  Button,
-  Container,
-  Form,
-  Icon,
-  InputGroup,
-  Input,
-  Item,
-  Text
-} from 'native-base'
+import { ImageBackground, StyleSheet } from 'react-native'
+import { Button, Container, Icon, Text } from 'native-base'
 import { setUserId } from '../actions/UserActions'
 import { connect } from 'react-redux'
 import { API_ROOT, POST_HEADERS } from '../services/api'
-import * as Facebook from 'expo-facebook';
+import * as Facebook from 'expo-facebook'
+import * as Font from 'expo-font'
 
 
 class LoginScreen extends PureComponent {
   state = {
+    fontLoaded: false,
     users: []
   }
 
@@ -29,8 +22,12 @@ class LoginScreen extends PureComponent {
     }))
   }
 
-  componentDidMount () {
+  async componentDidMount () {
     this.fetchUsers()
+    await Font.loadAsync({
+      'covered-by-your-grace': require('../assets/fonts/CoveredByYourGrace-Regular.ttf'),
+    })
+    this.setState({ fontLoaded: true })
   }
 
   facebookAttemptLogin = (facebookData) => {
@@ -67,11 +64,7 @@ class LoginScreen extends PureComponent {
 
   facebookLogin = async () => {
     try {
-      const {
-        type,
-        token,
-        expires
-      } = await Facebook.logInWithReadPermissionsAsync('983634002001933', {
+      const { type, token } = await Facebook.logInWithReadPermissionsAsync('983634002001933', {
         permissions: ['public_profile', 'email']
       })
       if (type === 'success') {
@@ -88,22 +81,27 @@ class LoginScreen extends PureComponent {
 
   render () {
     return (
-      <Container style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to Telephone! Please Login:
-        </Text>
-          <Button primary onPress={this.facebookLogin}>
-            <Text>
-              Login with Facebook
-            </Text> 
-          </Button>
+      <Container>
+        <ImageBackground source={{uri: 'https://media.giphy.com/media/mm7Lao6VOpDYA/giphy.gif'}} style={styles.background}>
+        {this.state.fontLoaded ? (
+          <Text style={styles.welcome}>
+            Welcome to Telephone!
+          </Text>
+        ) : null}
+        <Button large primary onPress={this.facebookLogin} style={styles.button}>
+          <Icon name="logo-facebook" />
+          <Text>
+            Login with Facebook
+          </Text> 
+        </Button>
+        </ImageBackground>
       </Container>
     )
   }
 }
 
 LoginScreen.navigationOptions = {
-  title: 'Please Login'
+  header: null
 }
 
 const mapDispatchToProps = dispatch => {
@@ -115,17 +113,22 @@ const mapDispatchToProps = dispatch => {
 export default connect(null, mapDispatchToProps)(LoginScreen)
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  background: {
+    width: '100%',
+    height: '100%',
+    flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignContent: 'center'
   },
   welcome: {
-    fontSize: 24,
+    fontSize: 75,
+    fontFamily: 'covered-by-your-grace',
     margin: 10,
-    textAlign: 'center'
+    textAlign: 'center',
+    textShadowColor: 'white',
+    textShadowRadius: 10
   },
-  formButtons: {
-    margin: 10
+  button: {
+    marginHorizontal: 50
   }
 })
