@@ -5,12 +5,10 @@ import { setUserId } from '../actions/UserActions'
 import { connect } from 'react-redux'
 import { API_ROOT, POST_HEADERS } from '../services/api'
 import * as Facebook from 'expo-facebook'
-import * as Font from 'expo-font'
 
 
 class LoginScreen extends PureComponent {
   state = {
-    fontLoaded: false,
     users: []
   }
 
@@ -20,14 +18,6 @@ class LoginScreen extends PureComponent {
     .then(users => this.setState({
       users: users
     }))
-  }
-
-  async componentDidMount () {
-    this.fetchUsers()
-    await Font.loadAsync({
-      'covered-by-your-grace': require('../assets/fonts/CoveredByYourGrace-Regular.ttf'),
-    })
-    this.setState({ fontLoaded: true })
   }
 
   facebookAttemptLogin = (facebookData) => {
@@ -83,17 +73,15 @@ class LoginScreen extends PureComponent {
     return (
       <Container>
         <ImageBackground source={{uri: 'https://media.giphy.com/media/mm7Lao6VOpDYA/giphy.gif'}} style={styles.background}>
-        {this.state.fontLoaded ? (
           <Text style={styles.welcome}>
             Welcome to Telephone!
           </Text>
-        ) : null}
-        <Button large primary onPress={this.facebookLogin} style={styles.button}>
-          <Icon name="logo-facebook" />
-          <Text>
-            Login with Facebook
-          </Text> 
-        </Button>
+          <Button large primary onPress={this.facebookLogin} style={styles.button}>
+            <Icon name="logo-facebook" />
+            <Text>
+              Login with Facebook
+            </Text>
+          </Button>
         </ImageBackground>
       </Container>
     )

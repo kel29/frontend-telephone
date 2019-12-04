@@ -17,7 +17,9 @@ const HomeScreen = (props) => {
 
   return (
     <Container style={styles.container}>
-      <Text style={styles.welcomeText}>Welcome to Telephone!</Text>
+      <Text style={styles.welcomeText}>
+        Welcome to Telephone!
+      </Text>
       <Button block success onPress={startGame}>
         <Text>
           Start New Game
@@ -40,7 +42,7 @@ const HomeScreen = (props) => {
 export default HomeScreen
 
 HomeScreen.navigationOptions = {
-  title: 'Welcome!'
+  headers: null
 }
 
 const styles = StyleSheet.create({
@@ -53,8 +55,9 @@ const styles = StyleSheet.create({
     paddingTop: 30
   },
   welcomeText: {
-    fontSize: 24,
-    lineHeight: 32,
+    fontFamily: 'covered-by-your-grace',
+    fontSize: 60,
+    lineHeight: 70,
     textAlign: 'center',
     margin: 10
   }
