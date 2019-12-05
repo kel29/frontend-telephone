@@ -44,7 +44,7 @@ class SketchScreen extends PureComponent {
 
   render () {
     return (
-      <Container>
+      <Container style={styles.container}>
         <Container style={styles.sentenceDisplay}>
           <SentenceDisplay sentence={this.props.gameRounds[this.props.gameRounds.length - 1].sentence} />
         </Container>
@@ -84,6 +84,10 @@ const mapStateToProps = state => {
   }
 }
 
+SketchScreen.navigationOptions = {
+  headerStyle: { backgroundColor: '#F0F5F5' }
+}
+
 export default connect(mapStateToProps)(SketchScreen)
 
 const styles = StyleSheet.create({
@@ -93,17 +97,18 @@ const styles = StyleSheet.create({
   sketchInput: {
     width: Dimensions.get('window').width - 20,
     height: Dimensions.get('window').width,
+    backgroundColor: '#FFF',
     borderRadius: 8,
-    borderWidth: 0.5,
-    borderColor: 'steelblue',
+    borderWidth: 1,
+    borderColor: '#1AE0D3',
     margin: 10,
     padding: 10
   },
   sentenceDisplay: {
-    padding: 10,
     flex: 1,
     alignContent: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingTop: 20
   },
   footer: {
     backgroundColor: '#030203'

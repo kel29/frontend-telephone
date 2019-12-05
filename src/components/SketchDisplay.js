@@ -25,9 +25,10 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 20,
     height: Dimensions.get('window').width + 20,
     justifyContent: 'center',
+    alignContent: 'center',
     borderRadius: 8,
-    borderWidth: 0.5,
-    borderColor: '#7210EA',
+    borderWidth: 1,
+    borderColor: '#1AE0D3',
     margin: 10,
     padding: 10
   }

@@ -24,12 +24,12 @@ const InBetweenScreen = (props) => {
           Pass the phone to the next player.
         </Text>
         <Button block large primary onPress={navigateToNext} style={styles.buttons}>
-          <Text>
+          <Text style={styles.buttonText}>
           Start Next Turn
           </Text>
         </Button>
         <Button block large danger onPress={endGame} style={styles.buttons}>
-          <Text>
+          <Text style={styles.buttonText}>
           End Game
           </Text>
         </Button>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0F5F5'
   },
   passingText: {
-    fontSize: 40,
+    fontSize: 60,
     textAlign: 'center',
     fontFamily: 'patrick-hand-sc',
     marginHorizontal: 10,
@@ -66,5 +66,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 20,
     padding: 5
+  },
+  buttonText: {
+    fontFamily: 'patrick-hand-sc'
   }
 })

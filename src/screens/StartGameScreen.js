@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { StyleSheet } from 'react-native'
+import { Keyboard, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 import {
   Button,
   Container,
@@ -61,10 +61,12 @@ class StartGameScreen extends PureComponent {
 
   render () {
     return (
-      <Container style={styles.container}>
-        <Container style={styles.input}>
-          <SentenceInput handleTyping={this.handleTyping} />
-        </Container>
+      <Container>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{backgroundColor: '#F0F5F5'}}>
+          <Container style={styles.container}>
+            <SentenceInput handleTyping={this.handleTyping} />
+          </Container>
+        </TouchableWithoutFeedback>
         <Footer style={styles.footer}>
           <FooterTab>
             <Button vertical onPress={() => this.props.navigation.goBack()}>
@@ -110,10 +112,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(StartGameScreen)
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F0F5F5'
-  },
-  input: {
-    justifyContent: 'center'
+    backgroundColor: '#F0F5F5',
+    alignContent: 'center',
+    flex: 1
   },
   footer: {
     backgroundColor: '#030203'

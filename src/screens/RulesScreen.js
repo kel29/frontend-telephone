@@ -24,7 +24,7 @@ function RulesScreen () {
           </ListItem>
           <ListItem>
             <Text style={styles.rules}>
-              Player one writes a descriptive sentence. Once done, they submit their sentence and pass the phone to the next player.
+              Player one has 200 characters to write a descriptive sentence. Once done, they submit their sentence and pass the phone to the next player.
             </Text>
           </ListItem>
           <ListItem itemDivider style={styles.listDivider}>

@@ -15,6 +15,8 @@ const SentenceInput = (props) => {
           Enter a descriptive sentence:
         </Label>
         <Input
+          multiline
+          maxLength={200}
           style={styles.input}
           onChangeText={sentence => props.handleTyping(sentence)}
         />
@@ -27,7 +29,7 @@ export default SentenceInput
 
 const styles = StyleSheet.create({
   input: {
-    fontSize: 36,
+    fontSize: 22,
     marginTop: 20,
     fontFamily: 'covered-by-your-grace'
   },

@@ -20,18 +20,18 @@ const HomeScreen = (props) => {
       <Text style={styles.welcomeText}>
         Welcome to Telephone!
       </Text>
-      <Button block success onPress={startGame}>
-        <Text>
+      <Button block large success onPress={startGame}>
+        <Text style={styles.buttonText}>
           Start New Game
         </Text>
       </Button>
-      <Button block primary onPress={showPastGames}>
-        <Text>
+      <Button block large primary onPress={showPastGames}>
+        <Text style={styles.buttonText}>
           Past Games
         </Text>
       </Button>
-      <Button block info onPress={showRules}>
-        <Text>
+      <Button block large info onPress={showRules}>
+        <Text style={styles.buttonText}>
           Rules
         </Text>
       </Button>
@@ -57,5 +57,8 @@ const styles = StyleSheet.create({
     fontSize: 60,
     lineHeight: 70,
     textAlign: 'center'
+  },
+  buttonText: {
+    fontFamily: 'patrick-hand-sc'
   }
 })

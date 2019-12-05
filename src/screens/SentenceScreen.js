@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react'
-import { StyleSheet } from 'react-native'
 import {
-  Container,
-  Footer,
-  FooterTab
-} from 'native-base'
+  Dimensions,
+  Keyboard,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View
+} from 'react-native'
+import { Container, Footer, FooterTab } from 'native-base'
 import SentenceInput from '../components/SentenceInput'
 import SketchDisplay from '../components/SketchDisplay'
 import { connect } from 'react-redux'
@@ -33,13 +35,17 @@ class SentenceScreen extends PureComponent {
 
   render () {
     return (
-      <Container style={styles.container}>
-        <Container>
-          <SentenceInput handleTyping={this.handleTyping} />
-        </Container>
-        <SketchDisplay
-          drawing={this.props.gameRounds[this.props.gameRounds.length - 1].drawing}
-        />
+      <Container>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
+          <Container style={styles.container}>
+            <SentenceInput handleTyping={this.handleTyping} />
+            <View style={styles.sketch}>
+              <SketchDisplay
+                drawing={this.props.gameRounds[this.props.gameRounds.length - 1].drawing}
+              />
+            </View>
+          </Container>
+        </TouchableWithoutFeedback>
         <Footer style={styles.footer}>
           <FooterTab>
             <EndGameButton
@@ -68,7 +74,12 @@ export default connect(mapStateToProps)(SentenceScreen)
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F0F5F5'
+    backgroundColor: '#F0F5F5',
+    justifyContent: 'space-between',
+    paddingTop: 10
+  },
+  sketch: {
+    height: Dimensions.get('window').width + 40
   },
   footer: {
     backgroundColor: '#030203'
