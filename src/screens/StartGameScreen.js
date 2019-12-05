@@ -61,11 +61,11 @@ class StartGameScreen extends PureComponent {
 
   render () {
     return (
-      <Container>
+      <Container style={styles.container}>
         <Container style={styles.input}>
           <SentenceInput handleTyping={this.handleTyping} />
         </Container>
-        <Footer>
+        <Footer style={styles.footer}>
           <FooterTab>
             <Button vertical onPress={() => this.props.navigation.goBack()}>
               <Icon name='ios-close-circle-outline'/>
@@ -83,7 +83,13 @@ class StartGameScreen extends PureComponent {
 }
 
 StartGameScreen.navigationOptions = {
-  title: 'Begin a New Game'
+  title: 'Begin a New Game',
+  headerTitleStyle: {
+    fontFamily: 'covered-by-your-grace',
+    fontSize: 24,
+    color: '#FEFEFE'
+  },
+  headerStyle: { backgroundColor: '#030203' }
 }
 
 const mapStateToProps = state => {
@@ -103,7 +109,13 @@ const mapDispatchToProps = dispatch => {
 export default connect(mapStateToProps, mapDispatchToProps)(StartGameScreen)
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#F0F5F5'
+  },
   input: {
     justifyContent: 'center'
+  },
+  footer: {
+    backgroundColor: '#030203'
   }
 })

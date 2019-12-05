@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { StyleSheet } from 'react-native'
 import {
   Container,
   Footer,
@@ -32,14 +33,14 @@ class SentenceScreen extends PureComponent {
 
   render () {
     return (
-      <Container>
+      <Container style={styles.container}>
         <Container>
           <SentenceInput handleTyping={this.handleTyping} />
         </Container>
         <SketchDisplay
           drawing={this.props.gameRounds[this.props.gameRounds.length - 1].drawing}
         />
-        <Footer>
+        <Footer style={styles.footer}>
           <FooterTab>
             <EndGameButton
               roundInfo={{sentence: this.state.sentence, game_id: this.props.gameId}}
@@ -64,3 +65,12 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(SentenceScreen)
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#F0F5F5'
+  },
+  footer: {
+    backgroundColor: '#030203'
+  }
+})

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Platform, StatusBar } from 'react-native'
 import { AppLoading } from 'expo'
 import * as Font from 'expo-font'
 import { Provider } from 'react-redux'
@@ -22,6 +23,7 @@ const App = () => {
   } else {
     return (
       <Provider store={store}>
+        {Platform.OS === 'ios' && <StatusBar barStyle='default' />}
         <AppNavigator />
       </Provider>
     )

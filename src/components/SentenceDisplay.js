@@ -15,6 +15,8 @@ export default SentenceDisplay
 const styles = StyleSheet.create({
   text: {
     fontSize: 36,
-    fontFamily: 'covered-by-your-grace'
+    fontFamily: 'covered-by-your-grace',
+    textAlign: 'center',
+    margin: 10
   }
 })

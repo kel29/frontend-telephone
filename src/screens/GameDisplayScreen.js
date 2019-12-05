@@ -1,4 +1,5 @@
 import React from 'react'
+import { StyleSheet } from 'react-native'
 import {
   Container,
   Content,
@@ -16,19 +17,23 @@ const GameDisplayScreen = (props) => {
     const gameRounds = props.navigation.getParam('game_rounds')
     return gameRounds.map(round => {
       if (round.drawing) {
-        return <SketchDisplay drawing={round.drawing} key={round.id} />
+        return (
+          <SketchDisplay drawing={round.drawing} key={round.id} />
+        )
       } else {
-        return <SentenceDisplay sentence={round.sentence} key={round.id} />
+        return (
+          <SentenceDisplay sentence={round.sentence} key={round.id} />
+        )
       }
     })
   }
 
   return (
-    <Container>
+    <Container style={styles.container}>
       <Content>
         {displayRounds()}
       </Content>
-      <Footer>
+      <Footer style={styles.footer}>
         <FooterTab>
           <Button onPress={() => props.navigation.navigate('Home')}>
             <Icon name='ios-home' />
@@ -41,7 +46,16 @@ const GameDisplayScreen = (props) => {
 }
 
 GameDisplayScreen.navigationOptions = {
-  headers: null
+  headerStyle: { backgroundColor: '#030203' }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#F0F5F5'
+  },
+  footer: {
+    backgroundColor: '#030203'
+  }
+})
 
 export default GameDisplayScreen

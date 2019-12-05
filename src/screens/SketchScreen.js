@@ -56,7 +56,7 @@ class SketchScreen extends PureComponent {
           strokeAlpha={1}
           onChange={this.snapshotSketch}
         />
-        <Footer>
+        <Footer style={styles.footer}>
           <FooterTab>
             <EndGameButton
               roundInfo={{drawing: this.state.sketch.uri, game_id: this.props.gameId}}
@@ -87,10 +87,12 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps)(SketchScreen)
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#F0F5F5'
+  },
   sketchInput: {
     width: Dimensions.get('window').width - 20,
     height: Dimensions.get('window').width,
-    backgroundColor: '#f4f4f4',
     borderRadius: 8,
     borderWidth: 0.5,
     borderColor: 'steelblue',
@@ -102,5 +104,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignContent: 'center',
     justifyContent: 'center'
+  },
+  footer: {
+    backgroundColor: '#030203'
   }
 })

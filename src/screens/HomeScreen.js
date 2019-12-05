@@ -42,23 +42,20 @@ const HomeScreen = (props) => {
 export default HomeScreen
 
 HomeScreen.navigationOptions = {
-  headers: null
+  headerStyle: { backgroundColor: '#030203' }
 }
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'space-around',
-    margin: 15
-  },
-  contentContainer: {
-    paddingTop: 30
+    padding: 15,
+    backgroundColor: '#F0F5F5'
   },
   welcomeText: {
     fontFamily: 'covered-by-your-grace',
     fontSize: 60,
     lineHeight: 70,
-    textAlign: 'center',
-    margin: 10
+    textAlign: 'center'
   }
 })
