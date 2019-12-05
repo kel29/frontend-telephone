@@ -19,7 +19,7 @@ class SketchScreen extends PureComponent {
   state = {
     sketch: { uri: null },
     strokeColor: '#000',
-    strokeWidth: 14
+    strokeWidth: 10
   }
 
   snapshotSketch = async () => {
