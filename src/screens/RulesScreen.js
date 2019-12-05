@@ -8,10 +8,11 @@ import {
   ListItem,
   Icon
 } from 'native-base'
+import Styles from '../constants/Style'
 
 function RulesScreen () {
   return (
-    <Container style={styles.container}>
+    <Container style={Styles.backgroundColor}>
       <Content>
         <Text style={styles.overview}>
           Welcome to Telephone! Similar to the classic childrens
@@ -24,7 +25,8 @@ function RulesScreen () {
           </ListItem>
           <ListItem>
             <Text style={styles.rules}>
-              Player one has 200 characters to write a descriptive sentence. Once done, they submit their sentence and pass the phone to the next player.
+              Player one has 200 characters to write a descriptive sentence. Once done,
+              they submit their sentence and pass the phone to the next player.
             </Text>
           </ListItem>
           <ListItem itemDivider style={styles.listDivider}>
@@ -32,7 +34,8 @@ function RulesScreen () {
           </ListItem>
           <ListItem>
             <Text style={styles.rules}>
-              Player two attempts to sketch an image representation of that sentence. Once done, they hit submit and pass the phone to the next player.
+              Player two attempts to sketch an image representation of that sentence.
+              Once done, they hit submit and pass the phone to the next player.
             </Text>
           </ListItem>
           <ListItem itemDivider style={styles.listDivider}>
@@ -40,7 +43,8 @@ function RulesScreen () {
           </ListItem>
           <ListItem>
             <Text style={styles.rules}>
-              Player three, having only seen player two's sketch, writes a sentence to describe the image. Submit, pass.
+              Player three, having only seen player two's sketch, writes a
+              sentence to describe the image. Submit, pass.
             </Text>
           </ListItem>
           <ListItem itemDivider style={styles.listDivider}>
@@ -49,7 +53,8 @@ function RulesScreen () {
           </ListItem>
           <ListItem>
             <Text style={styles.rules}>
-              Repeat steps two and three until you run out of players. Then hit end game to view each player's contribution!
+              Repeat steps two and three until you run out of players.
+              Then hit end game to view each player's contribution!
             </Text>
           </ListItem>
         </List>
@@ -63,7 +68,7 @@ RulesScreen.navigationOptions = {
   headerTitleStyle: {
     fontFamily: 'covered-by-your-grace',
     fontSize: 24,
-    color: '#FEFEFE'
+    color: '#1AE0D3'
   },
   headerStyle: { backgroundColor: '#030203' }
 }
@@ -84,9 +89,6 @@ const styles = StyleSheet.create({
   },
   listDivider: {
     backgroundColor: '#1AE0D3'
-  },
-  container: {
-    backgroundColor: '#F0F5F5'
   }
 })
 

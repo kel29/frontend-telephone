@@ -12,6 +12,7 @@ import SketchDisplay from '../components/SketchDisplay'
 import { connect } from 'react-redux'
 import EndGameButton from '../components/EndGameButton'
 import NextPlayerButton from '../components/NextPlayerButton'
+import Styles from '../constants/Style'
 
 class SentenceScreen extends PureComponent {
   state = {
@@ -46,7 +47,7 @@ class SentenceScreen extends PureComponent {
             </View>
           </Container>
         </TouchableWithoutFeedback>
-        <Footer style={styles.footer}>
+        <Footer style={Styles.footerColor}>
           <FooterTab>
             <EndGameButton
               roundInfo={{sentence: this.state.sentence, game_id: this.props.gameId}}
@@ -80,8 +81,5 @@ const styles = StyleSheet.create({
   },
   sketch: {
     height: Dimensions.get('window').width + 40
-  },
-  footer: {
-    backgroundColor: '#030203'
   }
 })

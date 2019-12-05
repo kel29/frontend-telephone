@@ -14,7 +14,7 @@ const GameList = (props) => {
     <ListItem>
       <Left>
         <Button transparent onPress={() => props.handleViewGame(props.game)}>
-          <Text style={styles.button}>
+          <Text style={styles.buttonText}>
             {props.game.game_rounds[0].sentence}
           </Text>
         </Button>
@@ -29,8 +29,8 @@ const GameList = (props) => {
 export default GameList
 
 const styles = StyleSheet.create({
-  button: {
+  buttonText: {
     fontFamily: 'patrick-hand-sc',
-    fontSize: 24
+    fontSize: 22
   }
 })

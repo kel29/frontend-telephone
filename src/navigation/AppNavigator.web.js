@@ -11,6 +11,4 @@ const switchNavigator = createSwitchNavigator({
   Game: GameNavigator
 })
 
-switchNavigator.path = ''
-
 export default createBrowserApp(switchNavigator, { history: 'hash' })

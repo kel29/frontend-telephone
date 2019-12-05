@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
-import { StyleSheet } from 'react-native'
 import { Container, Content, List } from 'native-base'
-import { API_ROOT } from '../services/api'
 import { connect } from 'react-redux'
+import { API_ROOT } from '../services/api'
 import GameDisplay from '../components/GameDisplay'
+import Styles from '../constants/Style'
 
 class PastGamesScreen extends PureComponent {
   state = {
@@ -40,7 +40,7 @@ class PastGamesScreen extends PureComponent {
 
   render () {
     return (
-      <Container style={styles.container} >
+      <Container style={Styles.backgroundColor} >
         <Content>
           <List>
             {this.parseGames()}
@@ -56,7 +56,7 @@ PastGamesScreen.navigationOptions = {
   headerTitleStyle: {
     fontFamily: 'covered-by-your-grace',
     fontSize: 24,
-    color: '#FEFEFE'
+    color: '#1AE0D3'
   },
   headerStyle: { backgroundColor: '#030203' }
 }
@@ -64,11 +64,5 @@ PastGamesScreen.navigationOptions = {
 const mapStateToProps = state => {
   return { userId: state.userId }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#F0F5F5'
-  }
-})
 
 export default connect(mapStateToProps)(PastGamesScreen)

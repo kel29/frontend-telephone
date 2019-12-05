@@ -1,6 +1,8 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Button, Container, Text } from 'native-base'
+import Welcome from '../components/Welcome'
+import Styles from '../constants/Style'
 
 const HomeScreen = (props) => {
   const startGame = () => {
@@ -17,21 +19,19 @@ const HomeScreen = (props) => {
 
   return (
     <Container style={styles.container}>
-      <Text style={styles.welcomeText}>
-        Welcome to Telephone!
-      </Text>
+      <Welcome />
       <Button block large success onPress={startGame}>
-        <Text style={styles.buttonText}>
+        <Text style={Styles.buttonText}>
           Start New Game
         </Text>
       </Button>
       <Button block large primary onPress={showPastGames}>
-        <Text style={styles.buttonText}>
+        <Text style={Styles.buttonText}>
           Past Games
         </Text>
       </Button>
       <Button block large info onPress={showRules}>
-        <Text style={styles.buttonText}>
+        <Text style={Styles.buttonText}>
           Rules
         </Text>
       </Button>
@@ -51,14 +51,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     padding: 15,
     backgroundColor: '#F0F5F5'
-  },
-  welcomeText: {
-    fontFamily: 'covered-by-your-grace',
-    fontSize: 60,
-    lineHeight: 70,
-    textAlign: 'center'
-  },
-  buttonText: {
-    fontFamily: 'patrick-hand-sc'
   }
 })

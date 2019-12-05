@@ -5,6 +5,7 @@ import { setUserId } from '../actions/UserActions'
 import { connect } from 'react-redux'
 import { API_ROOT, POST_HEADERS } from '../services/api'
 import * as Facebook from 'expo-facebook'
+import Welcome from '../components/Welcome'
 
 
 class LoginScreen extends PureComponent {
@@ -76,10 +77,11 @@ class LoginScreen extends PureComponent {
   render () {
     return (
       <Container>
-        <ImageBackground source={{uri: 'https://media.giphy.com/media/mm7Lao6VOpDYA/giphy.gif'}} style={styles.background}>
-          <Text style={styles.welcome}>
-            Welcome to Telephone!
-          </Text>
+        <ImageBackground
+          source={{uri: 'https://media.giphy.com/media/mm7Lao6VOpDYA/giphy.gif'}}
+          style={styles.background}
+        >
+          <Welcome />
           <Button large primary onPress={this.facebookLogin} style={styles.button}>
             <Icon name="logo-facebook" />
             <Text>
@@ -111,14 +113,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignContent: 'center'
-  },
-  welcome: {
-    fontSize: 75,
-    fontFamily: 'covered-by-your-grace',
-    margin: 10,
-    textAlign: 'center',
-    textShadowColor: 'white',
-    textShadowRadius: 10
   },
   button: {
     marginHorizontal: 50

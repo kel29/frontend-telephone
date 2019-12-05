@@ -1,4 +1,3 @@
-import React from 'react'
 import { createSwitchNavigator } from 'react-navigation'
 import StartGameScreen from '../screens/StartGameScreen'
 import SketchScreen from '../screens/SketchScreen'

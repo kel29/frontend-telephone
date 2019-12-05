@@ -8,10 +8,11 @@ import {
   Icon,
   Text
 } from 'native-base'
-import SentenceInput from '../components/SentenceInput'
 import { API_ROOT, POST_HEADERS } from '../services/api'
 import { connect } from 'react-redux'
 import { setGameId, addRound, clearCurrentGame } from '../actions/CurrentGameActions'
+import SentenceInput from '../components/SentenceInput'
+import Styles from '../constants/Style'
 
 class StartGameScreen extends PureComponent {
   state = {
@@ -62,12 +63,12 @@ class StartGameScreen extends PureComponent {
   render () {
     return (
       <Container>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{backgroundColor: '#F0F5F5'}}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={Styles.backgroundColor}>
           <Container style={styles.container}>
             <SentenceInput handleTyping={this.handleTyping} />
           </Container>
         </TouchableWithoutFeedback>
-        <Footer style={styles.footer}>
+        <Footer style={Styles.footerColor}>
           <FooterTab>
             <Button vertical onPress={() => this.props.navigation.goBack()}>
               <Icon name='ios-close-circle-outline'/>
@@ -89,7 +90,7 @@ StartGameScreen.navigationOptions = {
   headerTitleStyle: {
     fontFamily: 'covered-by-your-grace',
     fontSize: 24,
-    color: '#FEFEFE'
+    color: '#1AE0D3'
   },
   headerStyle: { backgroundColor: '#030203' }
 }
@@ -115,8 +116,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0F5F5',
     alignContent: 'center',
     flex: 1
-  },
-  footer: {
-    backgroundColor: '#030203'
   }
 })

@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Button, Container, Text } from 'native-base'
 import { connect } from 'react-redux'
+import Styles from '../constants/Style'
 
 const InBetweenScreen = (props) => {
   const nextScreen = props.navigation.getParam('screen')
@@ -24,12 +25,12 @@ const InBetweenScreen = (props) => {
           Pass the phone to the next player.
         </Text>
         <Button block large primary onPress={navigateToNext} style={styles.buttons}>
-          <Text style={styles.buttonText}>
+          <Text style={Styles.buttonText}>
           Start Next Turn
           </Text>
         </Button>
         <Button block large danger onPress={endGame} style={styles.buttons}>
-          <Text style={styles.buttonText}>
+          <Text style={Styles.buttonText}>
           End Game
           </Text>
         </Button>
@@ -66,8 +67,5 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 20,
     padding: 5
-  },
-  buttonText: {
-    fontFamily: 'patrick-hand-sc'
   }
 })

@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  StyleSheet,
-  Image,
-  Dimensions
-} from 'react-native'
+import { Dimensions, Image, StyleSheet } from 'react-native'
 import { Container } from 'native-base'
 
 const SketchDisplay = (props) => {

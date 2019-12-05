@@ -1,5 +1,4 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
 import {
   Container,
   Content,
@@ -11,29 +10,26 @@ import {
 } from 'native-base'
 import SentenceDisplay from '../components/SentenceDisplay'
 import SketchDisplay from '../components/SketchDisplay'
+import Styles from '../constants/Style'
 
 const GameDisplayScreen = (props) => {
   const displayRounds = () => {
     const gameRounds = props.navigation.getParam('game_rounds')
     return gameRounds.map(round => {
       if (round.drawing) {
-        return (
-          <SketchDisplay drawing={round.drawing} key={round.id} />
-        )
+        return <SketchDisplay drawing={round.drawing} key={round.id} />
       } else {
-        return (
-          <SentenceDisplay sentence={round.sentence} key={round.id} />
-        )
+        return <SentenceDisplay sentence={round.sentence} key={round.id} />
       }
     })
   }
 
   return (
-    <Container style={styles.container}>
+    <Container style={Styles.backgroundColor}>
       <Content>
         {displayRounds()}
       </Content>
-      <Footer style={styles.footer}>
+      <Footer style={Styles.footerColor}>
         <FooterTab>
           <Button onPress={() => props.navigation.navigate('Home')}>
             <Icon name='ios-home' />
@@ -45,17 +41,8 @@ const GameDisplayScreen = (props) => {
   )
 }
 
+export default GameDisplayScreen
+
 GameDisplayScreen.navigationOptions = {
   headerStyle: { backgroundColor: '#030203' }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#F0F5F5'
-  },
-  footer: {
-    backgroundColor: '#030203'
-  }
-})
-
-export default GameDisplayScreen
