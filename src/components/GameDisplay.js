@@ -1,5 +1,4 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
 import {
   Button,
   Icon,
@@ -8,13 +7,14 @@ import {
   Right,
   Text
 } from 'native-base'
+import Styles from '../constants/Style'
 
 const GameList = (props) => {
   return (
     <ListItem>
       <Left>
         <Button transparent onPress={() => props.handleViewGame(props.game)}>
-          <Text style={styles.buttonText}>
+          <Text style={Styles.buttonText}>
             {props.game.game_rounds[0].sentence}
           </Text>
         </Button>
@@ -27,10 +27,3 @@ const GameList = (props) => {
 }
 
 export default GameList
-
-const styles = StyleSheet.create({
-  buttonText: {
-    fontFamily: 'patrick-hand-sc',
-    fontSize: 22
-  }
-})

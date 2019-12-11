@@ -6,12 +6,13 @@ import {
   Input,
   Label
 } from 'native-base'
+import Styles from '../constants/Style'
 
 const SentenceInput = (props) => {
   return (
     <Form>
       <Item floatingLabel>
-        <Label style={styles.label}>
+        <Label style={Styles.buttonText}>
           Enter a descriptive sentence:
         </Label>
         <Input
@@ -32,8 +33,5 @@ const styles = StyleSheet.create({
     fontSize: 22,
     marginTop: 20,
     fontFamily: 'covered-by-your-grace'
-  },
-  label: {
-    fontFamily: 'patrick-hand-sc'
   }
 })

@@ -63,7 +63,7 @@ class LoginScreen extends PureComponent {
         permissions: ['public_profile', 'email']
       })
       if (type === 'success') {
-        fetch(`https://graph.facebook.com/me?access_token=${token}`)
+        fetch(`https://graph.facebook.com/me?fields=name,id,email%20&access_token=${token}`)
         .then(resp => resp.json())
         .then(user => this.facebookAttemptLogin(user))
       } else {
