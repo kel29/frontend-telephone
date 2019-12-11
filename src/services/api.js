@@ -1,4 +1,4 @@
-export const API_ROOT = 'http://10.137.6.188:3000/'
+export const API_ROOT = 'https://server-telephone.herokuapp.com/'
 
 export const POST_HEADERS = {
   method: 'POST',
