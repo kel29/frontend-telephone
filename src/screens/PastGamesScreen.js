@@ -9,7 +9,7 @@ class PastGamesScreen extends PureComponent {
   state = {
     games: [
       {
-        id: 0,
+        game_id: 0,
         game_rounds: [
         {sentence: ''}
       ]}
@@ -17,9 +17,9 @@ class PastGamesScreen extends PureComponent {
   }
 
   fetchGames = () => {
-    fetch(`${API_ROOT}games`)
+    fetch(`${API_ROOT}users/${this.props.userId}`)
     .then(resp => resp.json())
-    .then(games => this.setState({games}))
+    .then(userInfo => this.setState({games: userInfo.games}))
   }
 
   componentDidMount () {
@@ -28,9 +28,7 @@ class PastGamesScreen extends PureComponent {
 
   parseGames = () => {
     return this.state.games.map(game => {
-      if (game.user_id === this.props.userId) {
-        return <GameDisplay game={game} key={game.id} handleViewGame={this.viewGame} />
-      }
+      return <GameDisplay game={game} key={game.game_id} handleViewGame={this.viewGame} />
     })
   }
 
