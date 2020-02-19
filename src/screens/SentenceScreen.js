@@ -47,7 +47,7 @@ class SentenceScreen extends PureComponent {
             </View>
           </Container>
         </TouchableWithoutFeedback>
-        <Footer style={Styles.footerColor}>
+        <Footer style={Styles.marginStyle}>
           <FooterTab>
             <EndGameButton
               roundInfo={{sentence: this.state.sentence, game_id: this.props.gameId}}
@@ -69,6 +69,10 @@ const mapStateToProps = state => {
     gameId: state.gameId,
     gameRounds: state.gameRounds
   }
+}
+
+SentenceScreen.navigationOptions = {
+  headerStyle: { ...Styles.marginStyle }
 }
 
 export default connect(mapStateToProps)(SentenceScreen)

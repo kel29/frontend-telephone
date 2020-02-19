@@ -3,6 +3,7 @@ import { Button, Icon, Text } from 'native-base'
 import { API_ROOT, POST_HEADERS } from '../services/api'
 import { addRound } from '../actions/CurrentGameActions'
 import { connect } from 'react-redux'
+import Styles from '../constants/Style'
 
 const EndGameButton = (props) => {
   const config = {
@@ -24,8 +25,8 @@ const EndGameButton = (props) => {
 
   return (
     <Button onPress={endGame}>
-      <Icon name='ios-done-all' />
-      <Text>End Game</Text>
+      <Icon style={Styles.dangerBtn} name='ios-done-all' />
+      <Text style={Styles.dangerBtn}>End Game</Text>
     </Button>
   )
 }

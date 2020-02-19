@@ -42,7 +42,7 @@ const HomeScreen = (props) => {
 export default HomeScreen
 
 HomeScreen.navigationOptions = {
-  headerStyle: { backgroundColor: '#030203' }
+  headerStyle: { ...Styles.marginStyle }
 }
 
 const styles = StyleSheet.create({

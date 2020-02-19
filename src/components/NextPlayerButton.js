@@ -3,6 +3,7 @@ import { Button, Icon, Text } from 'native-base'
 import { API_ROOT, POST_HEADERS } from '../services/api'
 import { addRound } from '../actions/CurrentGameActions'
 import { connect } from 'react-redux'
+import Styles from '../constants/Style'
 
 const NextPlayerButton = (props) => {
   const config = {
@@ -24,8 +25,8 @@ const NextPlayerButton = (props) => {
 
   return (
     <Button onPress={nextPlayer}>
-      <Icon name='ios-checkbox-outline' />
-      <Text>Submit</Text>
+      <Icon style={Styles.successBtn} name='ios-checkbox-outline' />
+      <Text style={Styles.successBtn}>Submit</Text>
     </Button>
   )
 }

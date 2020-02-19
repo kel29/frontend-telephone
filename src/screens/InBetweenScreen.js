@@ -24,7 +24,7 @@ const InBetweenScreen = (props) => {
         <Text style={styles.passingText}>
           Pass the phone to the next player.
         </Text>
-        <Button block large primary onPress={navigateToNext} style={styles.buttons}>
+        <Button block large success onPress={navigateToNext} style={styles.buttons}>
           <Text style={Styles.buttonText}>
           Start Next Turn
           </Text>

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { Container, Content, List } from 'native-base'
 import { connect } from 'react-redux'
 import { API_ROOT } from '../services/api'
-import GameDisplay from '../components/GameDisplay'
+import GameList from '../components/GameList'
 import Styles from '../constants/Style'
 
 class PastGamesScreen extends PureComponent {
@@ -28,7 +28,7 @@ class PastGamesScreen extends PureComponent {
 
   parseGames = () => {
     return this.state.games.map(game => {
-      return <GameDisplay game={game} key={game.game_id} handleViewGame={this.viewGame} />
+      return <GameList game={game} key={game.game_id} handleViewGame={this.viewGame} />
     })
   }
 
@@ -51,12 +51,8 @@ class PastGamesScreen extends PureComponent {
 
 PastGamesScreen.navigationOptions = {
   title: 'Past Games',
-  headerTitleStyle: {
-    fontFamily: 'covered-by-your-grace',
-    fontSize: 24,
-    color: '#1AE0D3'
-  },
-  headerStyle: { backgroundColor: '#030203' }
+  headerTitleStyle: { ...Styles.headerTitleStyle },
+  headerStyle: { ...Styles.marginStyle }
 }
 
 const mapStateToProps = state => {

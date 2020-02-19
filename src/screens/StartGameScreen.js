@@ -24,8 +24,12 @@ class StartGameScreen extends PureComponent {
   }
 
   startNewGame = () => {
-    this.createGame()
-    .then(this.navToInBetween)
+    if (this.state.sentence.trim().length < 10) {
+      alert('Come on, I said a descriptive sentence. Could you give me a little more than that?')
+    } else {
+      this.createGame()
+      .then(this.navToInBetween)
+    }
   }
 
   createGame = () => {
@@ -68,15 +72,15 @@ class StartGameScreen extends PureComponent {
             <SentenceInput handleTyping={this.handleTyping} />
           </Container>
         </TouchableWithoutFeedback>
-        <Footer style={Styles.footerColor}>
+        <Footer style={Styles.marginStyle}>
           <FooterTab>
             <Button vertical onPress={() => this.props.navigation.goBack()}>
-              <Icon name='ios-close-circle-outline'/>
-              <Text>Cancel</Text>
+              <Icon style={Styles.dangerBtn} name='ios-close-circle-outline'/>
+              <Text style={Styles.dangerBtn} >Cancel</Text>
             </Button>
             <Button vertical onPress={this.startNewGame}>
-              <Icon name='ios-checkbox-outline'/>
-              <Text>Start Game</Text>
+              <Icon style={Styles.successBtn} name='ios-checkbox-outline'/>
+              <Text style={Styles.successBtn}>Start Game</Text>
             </Button>
           </FooterTab>
         </Footer>
@@ -87,12 +91,8 @@ class StartGameScreen extends PureComponent {
 
 StartGameScreen.navigationOptions = {
   title: 'Begin a New Game',
-  headerTitleStyle: {
-    fontFamily: 'covered-by-your-grace',
-    fontSize: 24,
-    color: '#1AE0D3'
-  },
-  headerStyle: { backgroundColor: '#030203' }
+  headerTitleStyle: { ...Styles.headerTitleStyle },
+  headerStyle: { ...Styles.marginStyle }
 }
 
 const mapStateToProps = state => {

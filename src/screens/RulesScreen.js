@@ -65,12 +65,8 @@ function RulesScreen () {
 
 RulesScreen.navigationOptions = {
   title: 'Rules',
-  headerTitleStyle: {
-    fontFamily: 'covered-by-your-grace',
-    fontSize: 24,
-    color: '#1AE0D3'
-  },
-  headerStyle: { backgroundColor: '#030203' }
+  headerTitleStyle: { ...Styles.headerTitleStyle },
+  headerStyle: { ...Styles.marginStyle }
 }
 
 const styles = StyleSheet.create({
@@ -88,7 +84,7 @@ const styles = StyleSheet.create({
     fontFamily: 'patrick-hand-sc'
   },
   listDivider: {
-    backgroundColor: '#1AE0D3'
+    backgroundColor: '#62B1F6'
   }
 })
 

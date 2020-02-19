@@ -59,7 +59,7 @@ class SketchScreen extends PureComponent {
           strokeAlpha={1}
           onChange={this.snapshotSketch}
         />
-        <Footer style={Styles.footerColor}>
+        <Footer style={Styles.marginStyle}>
           <FooterTab>
             <EndGameButton
               roundInfo={{drawing: this.state.sketch.uri, game_id: this.props.gameId}}
@@ -70,8 +70,8 @@ class SketchScreen extends PureComponent {
               navToInBetween={this.navToInBetween}
             />
             <Button onPress={() => this.sketch.undo()}>
-              <Icon name='ios-undo' />
-              <Text>Undo</Text> 
+              <Icon style={Styles.warningBtn} name='ios-undo' />
+              <Text style={Styles.warningBtn}>Undo</Text>
             </Button>
           </FooterTab>
         </Footer>
@@ -88,7 +88,7 @@ const mapStateToProps = state => {
 }
 
 SketchScreen.navigationOptions = {
-  headerStyle: { backgroundColor: '#F0F5F5' }
+  headerStyle: { ...Styles.marginStyle }
 }
 
 export default connect(mapStateToProps)(SketchScreen)

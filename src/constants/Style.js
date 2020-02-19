@@ -7,8 +7,29 @@ const Styles = StyleSheet.create({
   buttonText: {
     fontFamily: 'patrick-hand-sc'
   },
-  footerColor: {
-    backgroundColor: '#030203'
+  successBtn: {
+    fontWeight: 'bold',
+    color: '#5cb85c'
+  },
+  dangerBtn: {
+    fontWeight: 'bold',
+    color: '#d9534f'
+  },
+  warningBtn: {
+    fontWeight: 'bold',
+    color: '#f0ad4e'
+  },
+  primaryBtn: {
+    fontWeight: 'bold',
+    color: '#007aff'
+  },
+  headerTitleStyle: {
+    fontFamily: 'covered-by-your-grace',
+    fontSize: 24,
+    color: '#007aff'
+  },
+  marginStyle: {
+    backgroundColor: '#1a1a1a'
   }
 })
 

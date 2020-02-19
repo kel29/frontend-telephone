@@ -11,6 +11,7 @@ import {
 import SentenceDisplay from '../components/SentenceDisplay'
 import SketchDisplay from '../components/SketchDisplay'
 import Styles from '../constants/Style'
+import { API_ROOT } from '../services/api'
 
 const GameDisplayScreen = (props) => {
   const displayRounds = () => {
@@ -24,16 +25,25 @@ const GameDisplayScreen = (props) => {
     })
   }
 
+  const deleteGame = () => {
+    const gameId = (props.navigation.getParam('game_id'))
+    // will update game status to hidden
+  }
+
   return (
     <Container style={Styles.backgroundColor}>
       <Content>
         {displayRounds()}
       </Content>
-      <Footer style={Styles.footerColor}>
+      <Footer style={Styles.marginStyle}>
         <FooterTab>
+          <Button onPress={deleteGame}>
+            <Icon style={Styles.dangerBtn} name='ios-trash' />
+            <Text style={Styles.dangerBtn}>Delete</Text>
+          </Button>
           <Button onPress={() => props.navigation.navigate('Home')}>
-            <Icon name='ios-home' />
-            <Text>Home</Text>
+            <Icon style={Styles.primaryBtn} name='ios-home' />
+            <Text style={Styles.primaryBtn}>Home</Text>
           </Button>
         </FooterTab>
       </Footer>
@@ -44,5 +54,5 @@ const GameDisplayScreen = (props) => {
 export default GameDisplayScreen
 
 GameDisplayScreen.navigationOptions = {
-  headerStyle: { backgroundColor: '#030203' }
+  headerStyle: { ...Styles.marginStyle }
 }
