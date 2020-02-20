@@ -25,9 +25,26 @@ const GameDisplayScreen = (props) => {
     })
   }
 
-  const deleteGame = () => {
+  const hideGame = () => {
     const gameId = (props.navigation.getParam('game_id'))
-    // will update game status to hidden
+    const config = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        user_removed: true
+      })
+    }
+
+    fetch(`${API_ROOT}games/${gameId}`, config)
+    .then(resp => resp.json())
+    .then(update => {
+      props.navigation.getParam('reloadGames')()
+      props.navigation.navigate('PastGames')
+    })
+    .catch(error => alert(error))
   }
 
   return (
@@ -37,7 +54,7 @@ const GameDisplayScreen = (props) => {
       </Content>
       <Footer style={Styles.marginStyle}>
         <FooterTab>
-          <Button onPress={deleteGame}>
+          <Button onPress={hideGame}>
             <Icon style={Styles.dangerBtn} name='ios-trash' />
             <Text style={Styles.dangerBtn}>Delete</Text>
           </Button>

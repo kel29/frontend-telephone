@@ -10,9 +10,11 @@ class PastGamesScreen extends PureComponent {
     games: [
       {
         game_id: 0,
+        user_removed: false,
         game_rounds: [
-        {sentence: ''}
-      ]}
+          {sentence: ''}
+        ]
+      }
     ]
   }
 
@@ -28,12 +30,12 @@ class PastGamesScreen extends PureComponent {
 
   parseGames = () => {
     return this.state.games.map(game => {
-      return <GameList game={game} key={game.game_id} handleViewGame={this.viewGame} />
+      if (!game.user_removed) return <GameList game={game} key={game.game_id} handleViewGame={this.viewGame} />
     })
   }
 
   viewGame = (game) => {
-    this.props.navigation.navigate('Display', game)
+    this.props.navigation.navigate('Display', {...game, reloadGames: this.fetchGames})
   }
 
   render () {
