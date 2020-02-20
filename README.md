@@ -5,3 +5,7 @@ This React Native application takes the childhood classic game of micommunicatio
 ## Technology Used
 
 The application is developed with a Ruby on Rails [backend](https://github.com/kel29/Telephone-server), S3 image hosting, and a React Native with Expo frontend. User authentication is integrated with Facebook login. Touch drawing is implemented with Expo-Pixi and user interface is enhanced with Native Base. 
+
+## Demo
+
+[![Telephone Demo](http://img.youtube.com/vi/JCmPPinrRbE/0.jpg)](https://youtu.be/JCmPPinrRbE "Telephone Demo")
