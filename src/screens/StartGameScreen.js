@@ -39,10 +39,9 @@ class StartGameScreen extends PureComponent {
     })
     .then(resp => resp.json())
     .then(newGame => {
-
       this.props.clearCurrentGame()
-      this.props.setGameId(newGame.id)
-      this.postFirstRound(newGame.id)
+      this.props.setGameId(newGame.game_id)
+      this.postFirstRound(newGame.game_id)
     })
     .catch(console.log)
   }
@@ -76,7 +75,7 @@ class StartGameScreen extends PureComponent {
           <FooterTab>
             <Button vertical onPress={() => this.props.navigation.goBack()}>
               <Icon style={Styles.dangerBtn} name='ios-close-circle-outline'/>
-              <Text style={Styles.dangerBtn} >Cancel</Text>
+              <Text style={Styles.dangerBtn}>Cancel</Text>
             </Button>
             <Button vertical onPress={this.startNewGame}>
               <Icon style={Styles.successBtn} name='ios-checkbox-outline'/>
