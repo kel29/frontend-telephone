@@ -10,7 +10,6 @@ import { Container, Footer, FooterTab } from 'native-base'
 import SentenceInput from '../components/SentenceInput'
 import SketchDisplay from '../components/SketchDisplay'
 import { connect } from 'react-redux'
-import EndGameButton from '../components/EndGameButton'
 import NextPlayerButton from '../components/NextPlayerButton'
 import Styles from '../constants/Style'
 
@@ -25,13 +24,6 @@ class SentenceScreen extends PureComponent {
 
   navToInBetween = () => {
     this.props.navigation.navigate('InBetween', {screen: 'Sketch'})
-  }
-
-  navToDisplayGame = () => {
-    this.props.navigation.navigate('Display', {
-      id: this.props.gameId,
-      game_rounds: this.props.gameRounds
-    })
   }
 
   render () {
@@ -49,10 +41,6 @@ class SentenceScreen extends PureComponent {
         </TouchableWithoutFeedback>
         <Footer style={Styles.marginStyle}>
           <FooterTab>
-            <EndGameButton
-              roundInfo={{sentence: this.state.sentence, game_id: this.props.gameId}}
-              navToDisplayGame={this.navToDisplayGame}
-            />
             <NextPlayerButton
               roundInfo={{sentence: this.state.sentence, game_id: this.props.gameId}}
               navToInBetween={this.navToInBetween}
@@ -79,7 +67,7 @@ export default connect(mapStateToProps)(SentenceScreen)
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F0F5F5',
+    ...Styles.backgroundColor,
     justifyContent: 'space-between',
     paddingTop: 10
   },

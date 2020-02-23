@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dimensions, Image, StyleSheet } from 'react-native'
 import { Container } from 'native-base'
+import Styles from '../constants/Style'
 
 const SketchDisplay = (props) => {
   return (
@@ -18,14 +19,9 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width
   },
   sketchDisplay: {
-    width: Dimensions.get('window').width - 20,
+    ...Styles.sketchContainer,
     height: Dimensions.get('window').width + 20,
     justifyContent: 'center',
     alignContent: 'center',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#1AE0D3',
-    margin: 10,
-    padding: 10
   }
 })

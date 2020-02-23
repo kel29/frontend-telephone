@@ -50,6 +50,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     padding: 15,
-    backgroundColor: '#F0F5F5'
+    ...Styles.backgroundColor
   }
 })

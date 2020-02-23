@@ -1,8 +1,8 @@
-import { StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 
 const Styles = StyleSheet.create({
   backgroundColor: {
-    backgroundColor: '#F0F5F5'
+    backgroundColor: '#f2f2f2'
   },
   buttonText: {
     fontFamily: 'patrick-hand-sc'
@@ -23,6 +23,10 @@ const Styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#007aff'
   },
+  secondaryBtn: {
+    fontWeight: 'bold',
+    color: '#62B1F6'
+  },
   headerTitleStyle: {
     fontFamily: 'covered-by-your-grace',
     fontSize: 24,
@@ -30,6 +34,14 @@ const Styles = StyleSheet.create({
   },
   marginStyle: {
     backgroundColor: '#1a1a1a'
+  },
+  sketchContainer: {
+    width: Dimensions.get('window').width - 20,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+    margin: 10,
+    padding: 10
   }
 })
 

@@ -10,7 +10,6 @@ import {
 } from 'native-base'
 import SentenceDisplay from '../components/SentenceDisplay'
 import { Sketch } from 'expo-pixi'
-import EndGameButton from '../components/EndGameButton'
 import NextPlayerButton from '../components/NextPlayerButton'
 import { connect } from 'react-redux'
 import Styles from '../constants/Style'
@@ -36,15 +35,6 @@ class SketchScreen extends PureComponent {
     this.props.navigation.navigate('InBetween', {screen: 'Sentence'})
   }
 
-  game = {
-    id: this.props.gameId,
-    game_rounds: this.props.gameRounds
-  }
-
-  navToDisplayGame = () => {
-    this.props.navigation.navigate('Display', this.game)
-  }
-
   render () {
     return (
       <Container style={Styles.backgroundColor}>
@@ -61,10 +51,6 @@ class SketchScreen extends PureComponent {
         />
         <Footer style={Styles.marginStyle}>
           <FooterTab>
-            <EndGameButton
-              roundInfo={{drawing: this.state.sketch.uri, game_id: this.props.gameId}}
-              navToDisplayGame={this.navToDisplayGame}
-            />
             <NextPlayerButton
               roundInfo={{drawing: this.state.sketch.uri, game_id: this.props.gameId}}
               navToInBetween={this.navToInBetween}
@@ -95,14 +81,9 @@ export default connect(mapStateToProps)(SketchScreen)
 
 const styles = StyleSheet.create({
   sketchInput: {
-    width: Dimensions.get('window').width - 20,
+    ...Styles.sketchContainer,
     height: Dimensions.get('window').width,
     backgroundColor: '#FFF',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#1AE0D3',
-    margin: 10,
-    padding: 10
   },
   sentenceDisplay: {
     flex: 1,

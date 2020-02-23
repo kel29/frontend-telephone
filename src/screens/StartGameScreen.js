@@ -47,16 +47,18 @@ class StartGameScreen extends PureComponent {
   }
 
   postFirstRound = (gameId) => {
-    return fetch(`${API_ROOT}game_rounds`, {
+    const config = {
       ...POST_HEADERS,
       body: JSON.stringify({
         sentence: this.state.sentence,
         game_id: gameId
       })
-    })
-    .then(resp => resp.json())
-    .then(round => this.props.addRound(round))
-    .catch(console.log)
+    }
+
+    return fetch(`${API_ROOT}game_rounds`, config)
+      .then(resp => resp.json())
+      .then(round => this.props.addRound(round))
+      .catch(console.log)
   }
 
   navToInBetween = () => {
@@ -112,7 +114,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(StartGameScreen)
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F0F5F5',
+    ...Styles.backgroundColor,
     alignContent: 'center',
     flex: 1
   }

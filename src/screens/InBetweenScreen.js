@@ -13,7 +13,7 @@ const InBetweenScreen = (props) => {
 
   const endGame = () => {
     props.navigation.navigate('Display', {
-      id: props.gameId,
+      game_id: props.gameId,
       game_rounds: props.gameRounds
     })
   }
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignContent: 'center',
-    backgroundColor: '#F0F5F5'
+    ...Styles.backgroundColor
   },
   passingText: {
     fontSize: 60,

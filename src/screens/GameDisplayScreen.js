@@ -40,9 +40,13 @@ const GameDisplayScreen = (props) => {
 
     fetch(`${API_ROOT}games/${gameId}`, config)
     .then(resp => resp.json())
-    .then(update => {
-      props.navigation.getParam('reloadGames')()
-      props.navigation.navigate('PastGames')
+    .then(() => {
+      if (props.navigation.getParam('reloadGames')) {
+        props.navigation.getParam('reloadGames')()
+        props.navigation.navigate('PastGames')
+      } else {
+        props.navigation.navigate('Home')
+      }
     })
     .catch(error => alert(error))
   }
@@ -61,6 +65,10 @@ const GameDisplayScreen = (props) => {
           <Button onPress={() => props.navigation.navigate('Home')}>
             <Icon style={Styles.primaryBtn} name='ios-home' />
             <Text style={Styles.primaryBtn}>Home</Text>
+          </Button>
+          <Button onPress={() => props.navigation.navigate('PastGames')}>
+            <Icon style={Styles.secondaryBtn} name='md-list-box' />
+            <Text style={Styles.secondaryBtn}>Past Games</Text>
           </Button>
         </FooterTab>
       </Footer>
