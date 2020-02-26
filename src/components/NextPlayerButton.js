@@ -6,17 +6,32 @@ import { connect } from 'react-redux'
 import Styles from '../constants/Style'
 
 const NextPlayerButton = (props) => {
-  const config = {
-    ...POST_HEADERS,
-    body: JSON.stringify(props.roundInfo)
-  }
-
   const nextPlayer = () => {
     postRound()
-      .then(props.navToInBetween)
+    props.navToInBetween()
   }
 
   const postRound = () => {
+    let config = {
+      ...POST_HEADERS,
+      body: JSON.stringify(props.roundInfo)
+    }
+
+    if (props.roundInfo.drawing) {
+      const formData = new FormData()
+      formData.append('game_id', props.roundInfo.game_id)
+      formData.append('drawing', {
+        uri: props.roundInfo.drawing,
+        type: 'image/jpeg',
+        name: require('path').basename(props.roundInfo.drawing)
+      })
+
+      config = {
+        method: 'POST',
+        body: formData
+      }
+    }
+
     return fetch(`${API_ROOT}game_rounds`, config)
       .then(resp => resp.json())
       .then(round => props.addRound(round))
