@@ -15,7 +15,6 @@
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
-    "backgroundColor": "#f2f2f2",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -24,7 +23,6 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "requireFullScreen": true,
       "bundleIdentifier": "me.kristaloven.telephone",
       "buildNumber": "1.0.0"
 
