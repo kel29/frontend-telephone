@@ -4,8 +4,8 @@ import { AppLoading } from 'expo'
 import * as Font from 'expo-font'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import reducer from './reducers/reducer'
-import AppNavigator from './navigation/AppNavigator'
+import reducer from './src/reducers/reducer'
+import AppNavigator from './src/navigation/AppNavigator'
 
 const store = createStore(reducer)
 
@@ -35,8 +35,8 @@ export default App
 async function loadResourcesAsync () {
   await Promise.all([
     Font.loadAsync({
-      'covered-by-your-grace': require('./assets/fonts/CoveredByYourGrace-Regular.ttf'),
-      'patrick-hand-sc': require('./assets/fonts/PatrickHandSC-Regular.ttf')
+      'covered-by-your-grace': require('./src/assets/fonts/CoveredByYourGrace-Regular.ttf'),
+      'patrick-hand-sc': require('./src/assets/fonts/PatrickHandSC-Regular.ttf')
     })
   ])
 }
