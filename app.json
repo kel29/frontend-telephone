@@ -1,7 +1,9 @@
 {
   "expo": {
     "name": "Telephone",
+    "description": "Entertaining party game application which applies drawing to the childhood classic",
     "slug": "telephone",
+    "owner": "Krista Loven",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
